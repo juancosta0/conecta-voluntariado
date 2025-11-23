@@ -1,0 +1,84 @@
+<div class="hero-section">
+  <div class="container hero-content">
+    <h1 class="hero-title">Transforme Vidas Através do Voluntariado</h1>
+    <p class="hero-subtitle">Conecte-se com organizações e faça a diferença na sua comunidade hoje mesmo.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" routerLink="/opportunities">Encontrar Oportunidades</button>
+      <button class="btn btn-outline">Como Funciona</button>
+    </div>
+  </div>
+</div>
+
+<!-- Stats Section -->
+<div class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Voluntários Ativos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">150+</div>
+        <div class="stat-label">ONGs Parceiras</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1000+</div>
+        <div class="stat-label">Vidas Impactadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Cidades Atendidas</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Opportunities Section -->
+<div class="container main-content">
+  <div class="section-header">
+    <h2>Oportunidades em Destaque</h2>
+    <p>Encontre a causa perfeita para você</p>
+  </div>
+
+  <div class="search-bar-container">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Buscar oportunidades</mat-label>
+      <input matInput [formControl]="searchControl">
+    </mat-form-field>
+    <button mat-flat-button color="primary" class="search-btn">Buscar</button>
+  </div>
+
+  <div class="opportunities-grid">
+    @for (opp of opportunities(); track opp.id) {
+    <div class="opportunity-card" [routerLink]="['/opportunities', opp.id]">
+      <div class="card-image" [style.background-image]="'url(' + opp.imageUrl + ')'"></div>
+      <div class="card-content">
+        <div class="card-header">
+          <h3 class="card-title">{{ opp.title }}</h3>
+          <span class="rating">⭐ {{ opp.rating }}</span>
+        </div>
+        <p class="organization">{{ opp.organization }}</p>
+        <p class="location">📍 {{ opp.location }}</p>
+        <p class="description">{{ opp.description }}</p>
+
+        <div class="pills">
+          @for (cat of opp.categories; track cat) {
+          <span class="pill">{{ cat }}</span>
+          }
+        </div>
+
+        <div class="card-footer">
+          <span class="volunteers">👥 {{ opp.volunteersActive }} voluntários</span>
+          <button mat-flat-button color="primary" class="details-btn">Ver Detalhes</button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="view-all-section">
+    <button mat-stroked-button color="primary" routerLink="/opportunities" class="view-all-btn">
+      Ver Todas as Oportunidades
+    </button>
+  </div>
+</div>

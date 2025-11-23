@@ -1,0 +1,52 @@
+@if (opportunity(); as opp) {
+<div class="detail-container container">
+    <div class="detail-header">
+        <button mat-button routerLink="/" color="primary">
+            <mat-icon>arrow_back</mat-icon> Voltar
+        </button>
+    </div>
+
+    <div class="detail-card">
+        <div class="detail-image" [style.background-image]="'url(' + opp.imageUrl + ')'"></div>
+
+        <div class="detail-content">
+            <div class="org-info">
+                <span class="org-name">{{ opp.organization }}</span>
+                <span class="rating">★ {{ opp.rating }}</span>
+            </div>
+
+            <h1 class="detail-title">{{ opp.title }}</h1>
+            <p class="location"><mat-icon inline>location_on</mat-icon> {{ opp.location }}</p>
+
+            <div class="pills">
+                @for (cat of opp.categories; track cat) {
+                <span class="pill">{{ cat }}</span>
+                }
+            </div>
+
+            <div class="description-section">
+                <h3>Sobre a vaga</h3>
+                <p>{{ opp.description }}</p>
+            </div>
+
+            @if (opp.urgentNeeds.length > 0) {
+            <div class="urgent-needs">
+                <h3>Necessidades Urgentes</h3>
+                <ul>
+                    @for (need of opp.urgentNeeds; track need) {
+                    <li>{{ need }}</li>
+                    }
+                </ul>
+            </div>
+            }
+
+            <div class="action-area">
+                <button mat-flat-button color="primary" size="large" (click)="apply()">
+                    Quero me candidatar
+                </button>
+                <span class="volunteers-count">{{ opp.volunteersActive }} voluntários já participam</span>
+            </div>
+        </div>
+    </div>
+</div>
+}

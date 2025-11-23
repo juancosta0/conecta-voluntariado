@@ -1,0 +1,93 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin",
+      "name": "Administrador",
+      "token": "fake-jwt-token-admin"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "1",
+      "title": "Apoio Escolar Comunitário",
+      "organization": "Instituto Esperança",
+      "rating": 4.8,
+      "location": "São Paulo, SP",
+      "description": "Buscamos voluntários para auxiliar crianças do ensino fundamental com reforço escolar em matemática e português.",
+      "imageUrl": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Educação",
+        "Presencial",
+        "Crianças"
+      ],
+      "volunteersActive": 12,
+      "urgentNeeds": [
+        "Professores de Matemática"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Distribuição de Alimentos",
+      "organization": "Mãos que Ajudam",
+      "rating": 4.9,
+      "location": "Rio de Janeiro, RJ",
+      "description": "Participe da nossa ação semanal de distribuição de marmitas para pessoas em situação de rua no centro da cidade.",
+      "imageUrl": "https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Alimentação",
+        "Social",
+        "Noturno"
+      ],
+      "volunteersActive": 25,
+      "urgentNeeds": [
+        "Motoristas",
+        "Cozinheiros"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Reflorestamento Urbano",
+      "organization": "Verde Vida",
+      "rating": 4.7,
+      "location": "Curitiba, PR",
+      "description": "Ajude a plantar mudas de árvores nativas em parques e praças da cidade. Traga sua luva e disposição!",
+      "imageUrl": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Meio Ambiente",
+        "Ar Livre",
+        "Fim de Semana"
+      ],
+      "volunteersActive": 8,
+      "urgentNeeds": []
+    },
+    {
+      "id": "4",
+      "title": "Mentoria de Carreira",
+      "organization": "Futuro Jovem",
+      "rating": 5,
+      "location": "Remoto",
+      "description": "Mentoria online para jovens de baixa renda que estão ingressando no mercado de trabalho. 1 hora por semana.",
+      "imageUrl": "https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Mentoria",
+        "Online",
+        "Profissional"
+      ],
+      "volunteersActive": 40,
+      "urgentNeeds": [
+        "Mentores de TI"
+      ]
+    }
+  ],
+  "applications": [
+    {
+      "id": "34ff",
+      "opportunityId": "1",
+      "userId": 1,
+      "date": "2025-11-23T20:47:49.183Z",
+      "status": "pending"
+    }
+  ]
+}

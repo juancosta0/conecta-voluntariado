@@ -1,0 +1,31 @@
+<header class="header">
+    <div class="container header-content">
+        <div class="logo" routerLink="/">
+            <span class="logo-icon">❤️</span>
+            <span class="logo-text">ConectaVoluntário</span>
+        </div>
+
+        <nav class="nav-links">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Início</a>
+            <a routerLink="/opportunities" routerLinkActive="active">Oportunidades</a>
+            <a routerLink="/organizations" routerLinkActive="active">Organizações</a>
+            @if (authService.isNGO() || (authService.currentUser()?.username === 'admin')) {
+            <a routerLink="/ngo/create-project" routerLinkActive="active" class="create-project-link">Criar Projeto</a>
+            }
+        </nav>
+
+        <div class="auth-buttons">
+            @if (authService.currentUser(); as user) {
+            <div class="user-menu">
+                <span class="user-greeting">Olá, {{ user.name }}</span>
+                <button mat-stroked-button color="warn" (click)="authService.logout()">
+                    Sair
+                </button>
+            </div>
+            } @else {
+            <button mat-button routerLink="/login" class="btn-login">Entrar</button>
+            <button mat-flat-button color="primary" routerLink="/register" class="btn-register">Cadastrar</button>
+            }
+        </div>
+    </div>
+</header>

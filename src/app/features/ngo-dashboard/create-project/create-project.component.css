@@ -1,0 +1,191 @@
+.create-project-container {
+    min-height: calc(100vh - var(--header-height));
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 3rem 0;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.back-btn {
+    font-size: 1.5rem;
+    width: 52px;
+    height: 52px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-header p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.project-form-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1) !important;
+    border-radius: var(--radius-2xl) !important;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-form-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-600), var(--secondary-600));
+}
+
+.form-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 2px solid var(--gray-100);
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-700);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-title::before {
+    content: '';
+    width: 5px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+    border-radius: 3px;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 1.75rem;
+}
+
+.full-width mat-label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.full-width mat-hint {
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.form-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 2px solid var(--gray-100);
+}
+
+.cancel-btn {
+    padding: 0 2.5rem !important;
+    height: 52px;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    border: 2px solid var(--gray-300) !important;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background: var(--gray-50) !important;
+    border-color: var(--gray-400) !important;
+}
+
+.submit-btn {
+    padding: 0 3.5rem !important;
+    height: 52px;
+    font-weight: 700 !important;
+    font-size: 1.05rem !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4) !important;
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Form field enhancements */
+::ng-deep .project-form-card mat-form-field {
+    font-size: 1rem;
+}
+
+::ng-deep .project-form-card .mat-mdc-text-field-wrapper {
+    background: var(--gray-50);
+    border-radius: var(--radius-md);
+}
+
+::ng-deep .project-form-card .mat-mdc-form-field-focus-overlay {
+    background-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .create-project-container {
+        padding: 2rem 1rem;
+    }
+    
+    .project-form-card {
+        padding: 2.5rem 2rem;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .cancel-btn,
+    .submit-btn {
+        width: 100%;
+    }
+}

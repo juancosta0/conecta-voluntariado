@@ -1,0 +1,42 @@
+<div class="opportunities-page">
+    <div class="container">
+        <div class="page-header">
+            <h1>Oportunidades de Voluntariado</h1>
+            <p>Encontre a causa perfeita para você</p>
+        </div>
+
+        <div class="search-section">
+            <mat-form-field appearance="outline" class="search-field">
+                <mat-label>Buscar oportunidades</mat-label>
+                <input matInput [(ngModel)]="searchTerm" (keyup.enter)="onSearch()">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="onSearch()">Buscar</button>
+        </div>
+
+        <div class="opportunities-grid">
+            @for (opp of opportunities; track opp.id) {
+            <mat-card class="opportunity-card" [routerLink]="['/opportunities', opp.id]">
+                <img mat-card-image [src]="opp.imageUrl" [alt]="opp.title">
+                <mat-card-content>
+                    <div class="card-header">
+                        <h3>{{ opp.title }}</h3>
+                        <div class="rating">
+                            ⭐ {{ opp.rating }}
+                        </div>
+                    </div>
+                    <p class="organization">{{ opp.organization }}</p>
+                    <p class="location">
+                        📍 {{ opp.location }}
+                    </p>
+                    <p class="description">{{ opp.description }}</p>
+                    <div class="categories">
+                        @for (cat of opp.categories; track cat) {
+                        <mat-chip>{{ cat }}</mat-chip>
+                        }
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            }
+        </div>
+    </div>
+</div>

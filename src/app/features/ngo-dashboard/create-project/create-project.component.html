@@ -1,0 +1,69 @@
+<div class="create-project-container">
+    <div class="container">
+        <div class="page-header">
+            <button mat-icon-button routerLink="/" class="back-btn">
+                ←
+            </button>
+            <div>
+                <h1>✨ Criar Novo Projeto</h1>
+                <p>Divulgue sua oportunidade e encontre voluntários engajados</p>
+            </div>
+        </div>
+
+        <mat-card class="project-form-card">
+            <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+                <div class="form-section">
+                    <h3 class="section-title">Informações Básicas</h3>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Título do Projeto</mat-label>
+                        <input matInput formControlName="title" placeholder="Ex: Aulas de Reforço Escolar">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Descrição Completa</mat-label>
+                        <textarea matInput formControlName="description" rows="6"
+                            placeholder="Descreva o projeto, objetivos, atividades e impacto esperado..."></textarea>
+                        <mat-hint>Mínimo 50 caracteres</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Localização</mat-label>
+                        <input matInput formControlName="location" placeholder="Ex: São Paulo, SP">
+                    </mat-form-field>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Detalhes do Projeto</h3>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Categorias</mat-label>
+                        <input matInput formControlName="categories" placeholder="Ex: Educação, Crianças, Ensino">
+                        <mat-hint>Separe por vírgula</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Número de Voluntários Necessários</mat-label>
+                        <input matInput type="number" formControlName="volunteersNeeded" min="1">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>URL da Imagem</mat-label>
+                        <input matInput formControlName="imageUrl" placeholder="https://exemplo.com/imagem.jpg">
+                        <mat-hint>Link para uma imagem representativa do projeto</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-actions">
+                    <button mat-stroked-button type="button" routerLink="/" class="cancel-btn">
+                        Cancelar
+                    </button>
+                    <button mat-flat-button color="primary" type="submit" [disabled]="projectForm.invalid"
+                        class="submit-btn">
+                        Publicar Projeto
+                    </button>
+                </div>
+            </form>
+        </mat-card>
+    </div>
+</div>
