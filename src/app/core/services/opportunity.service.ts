@@ -21,7 +21,7 @@ export interface Opportunity {
 })
 export class OpportunityService {
     private http = inject(HttpClient);
-    private apiUrl = 'http://localhost:3000';
+    private apiUrl = 'http://localhost:3001';
 
     getOpportunities(): Observable<Opportunity[]> {
         return this.http.get<Opportunity[]>(`${this.apiUrl}/opportunities`);
