@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { DataService } from './data.service';
 
 export interface Opportunity {
-    id: number;
+    id: number | string;
     title: string;
     organization: string;
     rating: number;
@@ -13,54 +13,71 @@ export interface Opportunity {
     categories: string[];
     volunteersActive: number;
     urgentNeeds: string[];
-    ngoId?: number;
-    organizationId?: number;
+    ngoId?: number | string;
+    organizationId?: number | string;
 }
 
 @Injectable({
     providedIn: 'root'
 })
 export class OpportunityService {
-    private http = inject(HttpClient);
-    private apiUrl = 'http://localhost:3000';
+    private dataService = inject(DataService);
 
     getOpportunities(): Observable<Opportunity[]> {
-        return this.http.get<Opportunity[]>(`${this.apiUrl}/opportunities`);
+        return this.dataService.getOpportunities();
     }
 
     searchOpportunities(term: string): Observable<Opportunity[]> {
-        // json-server supports q parameter for full-text search
-        // We can also filter by specific fields using title_like or organization_like
-        return this.http.get<Opportunity[]>(`${this.apiUrl}/opportunities?q=${encodeURIComponent(term)}`);
+        return this.dataService.getOpportunities().pipe(
+            map(opportunities => {
+                if (!term) return opportunities;
+                const lowerTerm = term.toLowerCase();
+                return opportunities.filter(opp =>
+                    opp.title.toLowerCase().includes(lowerTerm) ||
+                    opp.organization.toLowerCase().includes(lowerTerm) ||
+                    opp.description.toLowerCase().includes(lowerTerm)
+                );
+            })
+        );
     }
 
-    getOpportunityById(id: number): Observable<Opportunity> {
-        return this.http.get<Opportunity>(`${this.apiUrl}/opportunities/${id}`);
+    getOpportunityById(id: number | string): Observable<Opportunity> {
+        return this.dataService.getOpportunities().pipe(
+            map(opportunities => opportunities.find(o => String(o.id) === String(id)))
+        );
     }
 
-    apply(opportunityId: number, userId: number): Observable<any> {
-        return this.http.post(`${this.apiUrl}/applications`, {
-            opportunityId,
-            userId,
-            date: new Date().toISOString(),
-            status: 'pending'
+    apply(opportunityId: number | string, userId: number | string): Observable<any> {
+        // This is now handled by ApplicationService, but keeping for compatibility if needed
+        // Ideally should be removed or delegate to ApplicationService
+        return new Observable(observer => {
+            observer.next({ success: true });
+            observer.complete();
         });
     }
 
     // NGO Methods
     createOpportunity(opportunity: Partial<Opportunity>): Observable<Opportunity> {
-        return this.http.post<Opportunity>(`${this.apiUrl}/opportunities`, opportunity);
+        const newOpportunity = {
+            ...opportunity,
+            id: Date.now().toString(),
+            volunteersActive: 0,
+            rating: 0
+        };
+        return this.dataService.addItem('opportunities', newOpportunity);
     }
 
-    updateOpportunity(id: number, opportunity: Partial<Opportunity>): Observable<Opportunity> {
-        return this.http.patch<Opportunity>(`${this.apiUrl}/opportunities/${id}`, opportunity);
+    updateOpportunity(id: number | string, opportunity: Partial<Opportunity>): Observable<Opportunity> {
+        return this.dataService.updateItem('opportunities', id, opportunity);
     }
 
-    deleteOpportunity(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/opportunities/${id}`);
+    deleteOpportunity(id: number | string): Observable<void> {
+        return this.dataService.deleteItem('opportunities', id);
     }
 
-    getOpportunitiesByNgo(ngoId: number): Observable<Opportunity[]> {
-        return this.http.get<Opportunity[]>(`${this.apiUrl}/opportunities?ngoId=${ngoId}`);
+    getOpportunitiesByNgo(ngoId: number | string): Observable<Opportunity[]> {
+        return this.dataService.getOpportunities().pipe(
+            map(opportunities => opportunities.filter(o => String(o.ngoId) === String(ngoId)))
+        );
     }
 }

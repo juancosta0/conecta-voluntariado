@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
+    loadChildren: () => import('./features/profile/profile-feature.module').then(m => m.ProfileFeatureModule)
   },
   { path: '**', redirectTo: '' }
 ];

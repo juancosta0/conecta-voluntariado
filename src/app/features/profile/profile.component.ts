@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
         const user = this.currentUser();
         if (!user || !user.id) return;
 
-        this.applicationService.getMyApplications(Number(user.id)).subscribe(applications => {
+        this.applicationService.getMyApplications(user.id).subscribe(applications => {
             this.myApplications.set(applications);
         });
     }

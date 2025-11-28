@@ -6,12 +6,12 @@ export enum NotificationType {
 }
 
 export interface Notification {
-    id: number;
-    userId: number;
+    id: number | string;
+    userId: number | string;
     title: string;
     message: string;
     type: NotificationType;
     read: boolean;
     createdAt: string;
-    relatedId?: number; // ID of related entity (e.g., application ID)
+    relatedId?: number | string; // ID of related entity (e.g., application ID)
 }

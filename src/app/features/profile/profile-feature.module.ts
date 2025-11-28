@@ -23,4 +23,4 @@ const routes: Routes = [
         MatIconModule
     ]
 })
-export class ProfileModule { }
+export class ProfileFeatureModule { }

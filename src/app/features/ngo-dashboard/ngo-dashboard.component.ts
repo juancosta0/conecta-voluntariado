@@ -88,7 +88,7 @@ export class NgoDashboardComponent implements OnInit {
         this.applicationService.updateApplicationStatus(application.id, ApplicationStatus.ACCEPTED).subscribe(() => {
             // Create notification for volunteer
             this.notificationService.createNotification({
-                userId: application.volunteerId,
+                userId: application.userId,
                 title: 'Candidatura Aceita! 🎉',
                 message: `Sua candidatura para "${application.opportunityTitle}" foi aceita! A organização entrará em contato em breve.`,
                 type: NotificationType.ACCEPTANCE,
@@ -104,7 +104,7 @@ export class NgoDashboardComponent implements OnInit {
         this.applicationService.updateApplicationStatus(application.id, ApplicationStatus.REJECTED).subscribe(() => {
             // Create notification for volunteer
             this.notificationService.createNotification({
-                userId: application.volunteerId,
+                userId: application.userId,
                 title: 'Atualização de Candidatura',
                 message: `Infelizmente sua candidatura para "${application.opportunityTitle}" não foi selecionada desta vez. Continue procurando outras oportunidades!`,
                 type: NotificationType.REJECTION,

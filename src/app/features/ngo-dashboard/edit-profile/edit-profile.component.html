@@ -1,3 +1,4 @@
+<!-- Profile Edit Form -->
 <div class="profile-container">
     <mat-card>
         <mat-card-header>
@@ -34,42 +35,43 @@
                     </mat-form-field>
 
                     <!-- NGO Specific Fields -->
-                    @if (authService.isNGO()) {
-                    <div class="section-divider">
-                        <h3>Informações da Organização</h3>
-                    </div>
+                    <ng-container *ngIf="authService.isNGO()">
+                        <div class="section-divider">
+                            <h3>Informações da Organização</h3>
+                        </div>
 
-                    <mat-form-field appearance="outline">
-                        <mat-label>Nome da Organização</mat-label>
-                        <input matInput formControlName="organizationName">
-                    </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nome da Organização</mat-label>
+                            <input matInput formControlName="organizationName">
+                        </mat-form-field>
 
-                    <mat-form-field appearance="outline">
-                        <mat-label>Website</mat-label>
-                        <input matInput formControlName="website" placeholder="https://...">
-                    </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Website</mat-label>
+                            <input matInput formControlName="website" placeholder="https://...">
+                        </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Endereço</mat-label>
-                        <input matInput formControlName="address">
-                    </mat-form-field>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Endereço</mat-label>
+                            <input matInput formControlName="address">
+                        </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Descrição</mat-label>
-                        <textarea matInput formControlName="description" rows="4"></textarea>
-                    </mat-form-field>
-                    }
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Descrição</mat-label>
+                            <textarea matInput formControlName="description" rows="4"></textarea>
+                        </mat-form-field>
+                    </ng-container>
                 </div>
 
                 <div class="form-actions">
                     <button mat-raised-button color="primary" type="submit"
                         [disabled]="profileForm.invalid || isLoading()">
-                        @if (isLoading()) {
-                        <mat-icon>hourglass_empty</mat-icon>
-                        Salvando...
-                        } @else {
-                        Salvar Alterações
-                        }
+                        <ng-container *ngIf="isLoading(); else saveText">
+                            <mat-icon>hourglass_empty</mat-icon>
+                            Salvando...
+                        </ng-container>
+                        <ng-template #saveText>
+                            Salvar Alterações
+                        </ng-template>
                     </button>
                 </div>
             </form>

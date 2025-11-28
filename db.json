@@ -254,6 +254,44 @@
       ],
       "availability": "Sábados, 10h-12h",
       "token": "fake-jwt-token-vol8"
+    },
+    {
+      "id": "1764300064462",
+      "username": "novo.voluntario",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "Novo Voluntário",
+      "email": "novo.voluntario@email.com",
+      "phone": "(11) 99999-9999",
+      "avatar": "https://i.pravatar.cc/150?img=12",
+      "bio": "Voluntário recém cadastrado.",
+      "skills": [
+        "Vontade de ajudar"
+      ],
+      "interests": [
+        "Geral"
+      ],
+      "availability": "A combinar",
+      "token": "fake-jwt-token-new"
+    },
+    {
+      "id": "1764300964796",
+      "username": "novo.voluntario.2",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "Novo Voluntário 2",
+      "email": "novo.voluntario.2@email.com",
+      "phone": "(11) 98888-8888",
+      "avatar": "https://i.pravatar.cc/150?img=15",
+      "bio": "Outro voluntário recém cadastrado.",
+      "skills": [
+        "Dedicação"
+      ],
+      "interests": [
+        "Geral"
+      ],
+      "availability": "Fins de semana",
+      "token": "fake-jwt-token-new-2"
     }
   ],
   "opportunities": [
@@ -554,7 +592,7 @@
     {
       "id": "1",
       "opportunityId": 1,
-      "volunteerId": 7,
+      "userId": 7,
       "volunteerName": "João Silva",
       "volunteerEmail": "joao.silva@email.com",
       "opportunityTitle": "Apoio Escolar Comunitario",
@@ -565,7 +603,7 @@
     {
       "id": "2",
       "opportunityId": 1,
-      "volunteerId": 7,
+      "userId": 7,
       "volunteerName": "João Silva",
       "volunteerEmail": "joao.silva@email.com",
       "opportunityTitle": "Apoio Escolar Comunitario",
@@ -576,7 +614,7 @@
     {
       "id": "3",
       "opportunityId": 5,
-      "volunteerId": 8,
+      "userId": 8,
       "volunteerName": "Maria Santos",
       "volunteerEmail": "maria.santos@email.com",
       "opportunityTitle": "Oficina de Leitura Infantil",
@@ -587,7 +625,7 @@
     {
       "id": "4",
       "opportunityId": 2,
-      "volunteerId": 9,
+      "userId": 9,
       "volunteerName": "Pedro Oliveira",
       "volunteerEmail": "pedro.oliveira@email.com",
       "opportunityTitle": "Distribuicao de Alimentos",
@@ -598,7 +636,7 @@
     {
       "id": "5",
       "opportunityId": 3,
-      "volunteerId": 10,
+      "userId": 10,
       "volunteerName": "Ana Rodrigues",
       "volunteerEmail": "ana.rodrigues@email.com",
       "opportunityTitle": "Reflorestamento Urbano",
@@ -609,7 +647,7 @@
     {
       "id": "6",
       "opportunityId": 4,
-      "volunteerId": 11,
+      "userId": 11,
       "volunteerName": "Carlos Ferreira",
       "volunteerEmail": "carlos.ferreira@email.com",
       "opportunityTitle": "Mentoria de Carreira",
@@ -620,7 +658,7 @@
     {
       "id": "7",
       "opportunityId": 11,
-      "volunteerId": 11,
+      "userId": 11,
       "volunteerName": "Carlos Ferreira",
       "volunteerEmail": "carlos.ferreira@email.com",
       "opportunityTitle": "Workshop de Programacao",
@@ -631,7 +669,7 @@
     {
       "id": "8",
       "opportunityId": 13,
-      "volunteerId": 12,
+      "userId": 12,
       "volunteerName": "Júlia Costa",
       "volunteerEmail": "julia.costa@email.com",
       "opportunityTitle": "Campanha de Vacinacao",
@@ -642,7 +680,7 @@
     {
       "id": "9",
       "opportunityId": 12,
-      "volunteerId": 13,
+      "userId": 13,
       "volunteerName": "Rafael Alves",
       "volunteerEmail": "rafael.alves@email.com",
       "opportunityTitle": "Preparacao para Entrevistas",
@@ -653,13 +691,34 @@
     {
       "id": "10",
       "opportunityId": 15,
-      "volunteerId": 14,
+      "userId": 14,
       "volunteerName": "Fernanda Lima",
       "volunteerEmail": "fernanda.lima@email.com",
       "opportunityTitle": "Palestras de Saude Mental",
       "appliedDate": "2025-11-27T18:00:00.000Z",
       "status": "accepted",
       "message": "Sou psicologa e gostaria de oferecer palestras sobre saude mental e bem-estar."
+    },
+    {
+      "id": "68c9",
+      "opportunityId": "6",
+      "userId": 1764300064462,
+      "appliedDate": "2025-11-28T03:21:33.273Z",
+      "status": "pending"
+    },
+    {
+      "id": "c483",
+      "opportunityId": "6",
+      "userId": 1764300964796,
+      "date": "2025-11-28T03:36:23.631Z",
+      "status": "pending"
+    },
+    {
+      "id": "27d1",
+      "opportunityId": "1",
+      "userId": 1764300964796,
+      "date": "2025-11-28T03:36:47.721Z",
+      "status": "pending"
     }
   ],
   "organizations": [

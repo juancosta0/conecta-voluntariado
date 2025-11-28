@@ -1,36 +1,44 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { DataService } from './data.service';
+
 import { Organization } from '../models/organization.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class OrganizationService {
-    private http = inject(HttpClient);
-    private apiUrl = 'http://localhost:3000';
+    private dataService = inject(DataService);
 
     getOrganizations(): Observable<Organization[]> {
-        return this.http.get<Organization[]>(`${this.apiUrl}/organizations`);
+        return this.dataService.getOrganizations();
     }
 
-    getOrganizationById(id: number): Observable<Organization> {
-        return this.http.get<Organization>(`${this.apiUrl}/organizations/${id}`);
+    getOrganizationById(id: number | string): Observable<Organization> {
+        return this.dataService.getOrganizations().pipe(
+            map(orgs => orgs.find(o => String(o.id) === String(id)))
+        );
     }
 
-    getOrganizationByNgoId(ngoId: number): Observable<Organization[]> {
-        return this.http.get<Organization[]>(`${this.apiUrl}/organizations?ngoId=${ngoId}`);
+    getOrganizationByNgoId(ngoId: number | string): Observable<Organization> {
+        return this.dataService.getOrganizations().pipe(
+            map(orgs => orgs.find(o => String(o.ngoId) === String(ngoId)))
+        );
     }
 
     createOrganization(organization: Partial<Organization>): Observable<Organization> {
-        return this.http.post<Organization>(`${this.apiUrl}/organizations`, organization);
+        const newOrg = {
+            ...organization,
+            id: Date.now()
+        };
+        return this.dataService.addItem('organizations', newOrg);
     }
 
-    updateOrganization(id: number, organization: Partial<Organization>): Observable<Organization> {
-        return this.http.patch<Organization>(`${this.apiUrl}/organizations/${id}`, organization);
+    updateOrganization(id: number | string, organization: Partial<Organization>): Observable<Organization> {
+        return this.dataService.updateItem('organizations', id, organization);
     }
 
-    deleteOrganization(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/organizations/${id}`);
+    deleteOrganization(id: number | string): Observable<void> {
+        return this.dataService.deleteItem('organizations', id);
     }
 }

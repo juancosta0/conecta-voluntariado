@@ -1,68 +1,58 @@
-import { Injectable, signal, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { User, UserType } from '../models/user.model';
-import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { DataService } from './data.service';
+import { map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private dataService = inject(DataService);
   private router = inject(Router);
-  private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/users';
 
-  // UI State via Signals
-  currentUser = signal<User | null>(this.getUserFromStorage());
+  currentUser = signal<User | null>(null);
 
-  constructor() { }
-
-  register(userData: Partial<User>): boolean {
-    // Mock registration - in real app would call API
-    const newUser: User = {
-      ...(userData as User),
-      id: Date.now(),
-      token: `fake-jwt-token-${Date.now()}`
-    };
-
-    this.currentUser.set(newUser);
-    localStorage.setItem('user', JSON.stringify(newUser));
-    return true;
+  constructor() {
+    // Restore session if exists
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      this.currentUser.set(JSON.parse(savedUser));
+    }
   }
 
   login(username: string, password: string): Observable<boolean> {
-    console.log('AuthService: login attempt', username, password);
-
-    // Fetch users from JSON Server
-    return this.http.get<User[]>(this.apiUrl).pipe(
+    return this.dataService.getUsers().pipe(
       map(users => {
-        // Find user with matching credentials
         const user = users.find(u => u.username === username && u.password === password);
-
         if (user) {
-          console.log('AuthService: login success', user);
           this.currentUser.set(user);
           localStorage.setItem('user', JSON.stringify(user));
 
-          // Navigate based on user type
           if (user.userType === UserType.NGO) {
-            this.router.navigate(['/ngo']).then(success =>
-              console.log('Navigation to /ngo result:', success)
-            );
+            this.router.navigate(['/ngo']);
           } else {
             this.router.navigate(['/']);
           }
-
           return true;
         }
-
-        console.log('AuthService: login failed - invalid credentials');
         return false;
-      }),
-      catchError(error => {
-        console.error('AuthService: login error', error);
-        return of(false);
+      })
+    );
+  }
+
+  register(userData: Partial<User>): Observable<boolean> {
+    const newUser: User = {
+      ...(userData as User),
+      id: Date.now().toString(),
+      token: `fake-jwt-token-${Date.now()}`
+    };
+
+    return this.dataService.addItem('users', newUser).pipe(
+      map(() => {
+        this.currentUser.set(newUser);
+        localStorage.setItem('user', JSON.stringify(newUser));
+        return true;
       })
     );
   }
@@ -77,16 +67,13 @@ export class AuthService {
     return !!this.currentUser();
   }
 
-  isVolunteer(): boolean {
-    return this.currentUser()?.userType === UserType.VOLUNTEER;
-  }
-
   isNGO(): boolean {
-    return this.currentUser()?.userType === UserType.NGO;
+    const user = this.currentUser();
+    return user?.userType === UserType.NGO;
   }
 
-  private getUserFromStorage(): User | null {
-    const stored = localStorage.getItem('user');
-    return stored ? JSON.parse(stored) : null;
+  isVolunteer(): boolean {
+    const user = this.currentUser();
+    return user?.userType === UserType.VOLUNTEER;
   }
 }

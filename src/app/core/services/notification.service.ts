@@ -1,50 +1,57 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { DataService } from './data.service';
 import { Notification, NotificationType } from '../models/notification.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NotificationService {
-    private http = inject(HttpClient);
-    private apiUrl = 'http://localhost:3000';
+    private dataService = inject(DataService);
 
-    getNotifications(userId: number): Observable<Notification[]> {
-        return this.http.get<Notification[]>(`${this.apiUrl}/notifications?userId=${userId}&_sort=createdAt&_order=desc`);
+    getNotifications(userId: number | string): Observable<Notification[]> {
+        return this.dataService.getNotifications().pipe(
+            map(notifications => notifications
+                .filter(n => String(n.userId) === String(userId))
+                .map(n => ({
+                    ...n,
+                    createdAt: (n as any).date || n.createdAt, // Handle legacy 'date' field
+                    type: n.type as NotificationType
+                }))
+                .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+            )
+        );
     }
 
-    getUnreadNotifications(userId: number): Observable<Notification[]> {
-        return this.http.get<Notification[]>(`${this.apiUrl}/notifications?userId=${userId}&read=false&_sort=createdAt&_order=desc`);
+    markAsRead(id: number | string): Observable<any> {
+        return this.dataService.updateItem('notifications', id, { read: true });
     }
 
-    markAsRead(notificationId: number): Observable<Notification> {
-        return this.http.patch<Notification>(`${this.apiUrl}/notifications/${notificationId}`, { read: true });
-    }
-
-    markAllAsRead(userId: number): Observable<void> {
-        // This would need a custom endpoint in a real API
-        // For json-server, we'll need to update each notification individually
-        return new Observable(observer => {
-            this.getUnreadNotifications(userId).subscribe(notifications => {
-                const updates = notifications.map(n => this.markAsRead(n.id));
-                Promise.all(updates.map(obs => obs.toPromise())).then(() => {
-                    observer.next();
-                    observer.complete();
+    markAllAsRead(userId: number | string): Observable<any> {
+        return this.getNotifications(userId).pipe(
+            map(notifications => {
+                const unread = notifications.filter(n => !n.read);
+                unread.forEach(n => {
+                    this.dataService.updateItem('notifications', n.id, { read: true }).subscribe();
                 });
-            });
-        });
+                return true;
+            })
+        );
     }
 
     createNotification(notification: Partial<Notification>): Observable<Notification> {
-        return this.http.post<Notification>(`${this.apiUrl}/notifications`, {
+        const newNotification = {
             ...notification,
+            id: Date.now().toString(),
             createdAt: new Date().toISOString(),
             read: false
-        });
+        };
+        return this.dataService.addItem('notifications', newNotification);
     }
 
-    deleteNotification(notificationId: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/notifications/${notificationId}`);
+    getUnreadCount(userId: number | string): Observable<number> {
+        return this.getNotifications(userId).pipe(
+            map(notifications => notifications.filter(n => !n.read).length)
+        );
     }
 }

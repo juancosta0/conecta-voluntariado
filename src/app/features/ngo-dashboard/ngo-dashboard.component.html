@@ -80,12 +80,16 @@
                         <div class="application-item" [class]="getStatusClass(app.status)">
                             <div class="application-info">
                                 <div class="volunteer-header">
-                                    <h4>{{ app.volunteerName }}</h4>
+                                    <h4>
+                                        <a [routerLink]="['/volunteer', app.userId]" class="volunteer-link">
+                                            {{ app.user?.name || app.volunteerName }}
+                                        </a>
+                                    </h4>
                                     <span class="status-badge" [class]="getStatusClass(app.status)">
                                         {{ getStatusLabel(app.status) }}
                                     </span>
                                 </div>
-                                <p class="volunteer-email">✉️ {{ app.volunteerEmail }}</p>
+                                <p class="volunteer-email">✉️ {{ app.user?.email || app.volunteerEmail }}</p>
                                 <p class="application-date">
                                     📅 Candidatura enviada em {{ app.appliedDate | date: 'dd/MM/yyyy HH:mm' }}
                                 </p>

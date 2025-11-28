@@ -25,7 +25,7 @@ export class OrganizationsComponent implements OnInit {
         );
     }
 
-    viewProjects(organizationId: number) {
+    viewProjects(organizationId: number | string) {
         // Navigate to opportunities page filtered by organization
         this.router.navigate(['/opportunities'], {
             queryParams: { organizationId: organizationId }

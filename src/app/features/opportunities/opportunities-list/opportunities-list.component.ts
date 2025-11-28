@@ -20,7 +20,7 @@ export class OpportunitiesListComponent implements OnInit {
         this.route.queryParams.subscribe(params => {
             const organizationId = params['organizationId'];
             if (organizationId) {
-                this.loadOpportunitiesByOrganization(Number(organizationId));
+                this.loadOpportunitiesByOrganization(organizationId);
             } else {
                 this.loadOpportunities();
             }
@@ -33,9 +33,9 @@ export class OpportunitiesListComponent implements OnInit {
         );
     }
 
-    loadOpportunitiesByOrganization(organizationId: number) {
+    loadOpportunitiesByOrganization(organizationId: number | string) {
         this.opportunityService.getOpportunities().subscribe(
-            data => this.opportunities = data.filter(opp => opp.organizationId === organizationId)
+            data => this.opportunities = data.filter(opp => String(opp.organizationId) === String(organizationId))
         );
     }
 

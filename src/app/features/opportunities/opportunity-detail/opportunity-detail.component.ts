@@ -23,7 +23,7 @@ export class OpportunityDetailComponent implements OnInit {
     ngOnInit() {
         this.route.paramMap.pipe(
             switchMap(params => {
-                const id = Number(params.get('id'));
+                const id = params.get('id')!;
                 return this.opportunityService.getOpportunityById(id);
             })
         ).subscribe(opp => {

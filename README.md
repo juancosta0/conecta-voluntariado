@@ -54,41 +54,17 @@ O ConectaVoluntário foi desenvolvido com **Angular 19** e utiliza **Angular Mat
 
 ### Executando a Aplicação
 
-Para rodar o projeto completo, você precisa iniciar **dois servidores** em terminais separados:
+Agora o projeto utiliza **LocalStorage** para simular o banco de dados, então você só precisa rodar o frontend!
 
-#### Terminal 1 - Frontend (Angular)
+1. **Inicie o servidor de desenvolvimento**:
+   ```bash
+   ng serve
+   ```
 
-Execute o servidor de desenvolvimento do Angular:
+2. **Acesse a aplicação**:
+   Abra seu navegador em `http://localhost:4200`
 
-```bash
-ng serve
-```
-
-Ou, se houver problemas com políticas de execução do PowerShell:
-
-```bash
-npx ng serve
-```
-
-O frontend estará disponível em: **http://localhost:4200**
-
-#### Terminal 2 - Backend Mock (JSON Server)
-
-Execute o JSON Server para simular a API:
-
-```bash
-npx json-server --watch db.json --port 3000
-```
-
-O backend estará disponível em: **http://localhost:3000**
-
-### Acessando a Aplicação
-
-Após iniciar ambos os servidores, abra seu navegador e acesse:
-
-```
-http://localhost:4200
-```
+**Nota:** Na primeira vez que você abrir, o sistema irá carregar automaticamente os dados iniciais. Tudo o que você fizer (criar contas, candidatar-se) ficará salvo no seu navegador.
 
 ## 👥 Usuários de Teste
 
