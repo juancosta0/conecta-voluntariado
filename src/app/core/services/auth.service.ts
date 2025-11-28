@@ -1,12 +1,17 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { User, UserType } from '../models/user.model';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private router = inject(Router);
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:3000/users';
 
   // UI State via Signals
   currentUser = signal<User | null>(this.getUserFromStorage());
@@ -26,45 +31,40 @@ export class AuthService {
     return true;
   }
 
-  login(username: string, pass: string): boolean {
-    console.log('AuthService: login attempt', username, pass);
-    // Mock login logic - check against stored users or defaults
-    if (username === 'admin' && pass === 'admin') {
-      console.log('AuthService: admin login success');
-      const user: User = {
-        id: 1,
-        username: 'admin',
-        name: 'Administrador',
-        email: 'admin@conecta.com',
-        userType: UserType.VOLUNTEER,
-        token: 'fake-jwt-token-admin'
-      };
-      this.currentUser.set(user);
-      localStorage.setItem('user', JSON.stringify(user));
-      this.router.navigate(['/']);
-      return true;
-    } else if (username === 'ong_esperanca' && pass === 'esperanca123') {
-      console.log('AuthService: ngo login success');
-      const user: User = {
-        id: 2,
-        username: 'ong_esperanca',
-        name: 'Maria Silva',
-        email: 'contato@esperanca.org',
-        userType: UserType.NGO,
-        organizationName: 'Instituto Esperança',
-        organizationId: 1,
-        description: 'Trabalhamos com educação e desenvolvimento comunitário há mais de 15 anos.',
-        website: 'https://esperanca.org',
-        address: 'Rua da Esperança, 123',
-        token: 'fake-jwt-token-ngo1'
-      };
-      this.currentUser.set(user);
-      localStorage.setItem('user', JSON.stringify(user));
-      this.router.navigate(['/ngo']).then(success => console.log('Navigation to /ngo result:', success));
-      return true;
-    }
-    console.log('AuthService: login failed');
-    return false;
+  login(username: string, password: string): Observable<boolean> {
+    console.log('AuthService: login attempt', username, password);
+
+    // Fetch users from JSON Server
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      map(users => {
+        // Find user with matching credentials
+        const user = users.find(u => u.username === username && u.password === password);
+
+        if (user) {
+          console.log('AuthService: login success', user);
+          this.currentUser.set(user);
+          localStorage.setItem('user', JSON.stringify(user));
+
+          // Navigate based on user type
+          if (user.userType === UserType.NGO) {
+            this.router.navigate(['/ngo']).then(success =>
+              console.log('Navigation to /ngo result:', success)
+            );
+          } else {
+            this.router.navigate(['/']);
+          }
+
+          return true;
+        }
+
+        console.log('AuthService: login failed - invalid credentials');
+        return false;
+      }),
+      catchError(error => {
+        console.error('AuthService: login error', error);
+        return of(false);
+      })
+    );
   }
 
   logout() {

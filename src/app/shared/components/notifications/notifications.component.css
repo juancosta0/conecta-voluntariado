@@ -3,7 +3,11 @@
 }
 
 .notification-bell {
-    color: white;
+    color: var(--text-primary, #333);
+}
+
+.notification-bell mat-icon {
+    color: inherit;
 }
 
 .notifications-dropdown {

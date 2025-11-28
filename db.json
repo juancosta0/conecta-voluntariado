@@ -6,7 +6,7 @@
       "password": "admin",
       "name": "Administrador",
       "email": "admin@conecta.com",
-      "userType": "VOLUNTEER",
+      "userType": "volunteer",
       "token": "fake-jwt-token-admin"
     },
     {
@@ -15,7 +15,7 @@
       "password": "esperanca123",
       "name": "Maria Silva",
       "email": "contato@esperanca.org",
-      "userType": "NGO",
+      "userType": "ngo",
       "organizationName": "Instituto Esperanca",
       "organizationId": 1,
       "token": "fake-jwt-token-ngo1"
@@ -26,7 +26,7 @@
       "password": "maos123",
       "name": "Joao Santos",
       "email": "contato@maosqueajudam.org",
-      "userType": "NGO",
+      "userType": "ngo",
       "organizationName": "Maos que Ajudam",
       "organizationId": 2,
       "token": "fake-jwt-token-ngo2"
@@ -37,7 +37,7 @@
       "password": "verde123",
       "name": "Ana Costa",
       "email": "contato@verdevida.org",
-      "userType": "NGO",
+      "userType": "ngo",
       "organizationName": "Verde Vida",
       "organizationId": 3,
       "token": "fake-jwt-token-ngo3"
@@ -48,7 +48,7 @@
       "password": "futuro123",
       "name": "Carlos Mendes",
       "email": "contato@futurojovem.org",
-      "userType": "NGO",
+      "userType": "ngo",
       "organizationName": "Futuro Jovem",
       "organizationId": 4,
       "token": "fake-jwt-token-ngo4"
@@ -59,7 +59,7 @@
       "password": "saude123",
       "name": "Patricia Lima",
       "email": "contato@saudecomunitaria.org",
-      "userType": "NGO",
+      "userType": "ngo",
       "organizationName": "Saude Comunitaria",
       "organizationId": 5,
       "token": "fake-jwt-token-ngo5"

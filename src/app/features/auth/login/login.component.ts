@@ -24,11 +24,18 @@ export class LoginComponent {
     onSubmit() {
         if (this.loginForm.valid) {
             const { username, password } = this.loginForm.value;
-            if (this.authService.login(username!, password!)) {
-                // Navigation is handled by AuthService
-            } else {
-                this.snackBar.open('Credenciais inválidas (Tente admin/admin)', 'Fechar', { duration: 3000 });
-            }
+            this.authService.login(username!, password!).subscribe({
+                next: (success) => {
+                    if (!success) {
+                        this.snackBar.open('Credenciais inválidas', 'Fechar', { duration: 3000 });
+                    }
+                    // Navigation is handled by AuthService on success
+                },
+                error: (error) => {
+                    console.error('Login error:', error);
+                    this.snackBar.open('Erro ao fazer login. Verifique se o servidor está rodando.', 'Fechar', { duration: 5000 });
+                }
+            });
         }
     }
 }
