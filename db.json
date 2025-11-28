@@ -180,12 +180,8 @@
     {
       "id": 1,
       "userId": 1,
-      "title": "Candidatura Recebida",
-      "message": "Sua candidatura para 'Apoio Escolar Comunitário' foi recebida e está em análise.",
-      "type": "application",
-      "read": false,
-      "createdAt": "2025-11-23T20:47:49.183Z",
-      "relatedId": 1
+      "date": "2025-11-23T20:47:49.183Z",
+      "status": "pending"
     }
   ]
 }
