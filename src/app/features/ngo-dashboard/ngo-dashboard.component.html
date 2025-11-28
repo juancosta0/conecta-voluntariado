@@ -1,0 +1,122 @@
+<div class="dashboard-container">
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>Painel de Controle - ONG</h1>
+            <button mat-flat-button color="primary" routerLink="/ngo/create-project">
+                <mat-icon>add</mat-icon>
+                Criar Novo Projeto
+            </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <mat-card class="stat-card">
+                <mat-icon class="stat-icon">work</mat-icon>
+                <div class="stat-content">
+                    <div class="stat-number">{{ stats().totalOpportunities }}</div>
+                    <div class="stat-label">Projetos Ativos</div>
+                </div>
+            </mat-card>
+
+            <mat-card class="stat-card">
+                <mat-icon class="stat-icon">people</mat-icon>
+                <div class="stat-content">
+                    <div class="stat-number">{{ stats().totalApplications }}</div>
+                    <div class="stat-label">Total de Candidaturas</div>
+                </div>
+            </mat-card>
+
+            <mat-card class="stat-card pending">
+                <mat-icon class="stat-icon">schedule</mat-icon>
+                <div class="stat-content">
+                    <div class="stat-number">{{ stats().pendingApplications }}</div>
+                    <div class="stat-label">Aguardando Análise</div>
+                </div>
+            </mat-card>
+
+            <mat-card class="stat-card accepted">
+                <mat-icon class="stat-icon">check_circle</mat-icon>
+                <div class="stat-content">
+                    <div class="stat-number">{{ stats().acceptedApplications }}</div>
+                    <div class="stat-label">Voluntários Aceitos</div>
+                </div>
+            </mat-card>
+        </div>
+
+        <!-- Opportunities with Applications -->
+        <div class="opportunities-section">
+            @if (opportunitiesWithApplications().length === 0) {
+            <mat-card class="empty-state">
+                <mat-icon>inbox</mat-icon>
+                <h3>Nenhum projeto criado ainda</h3>
+                <p>Crie seu primeiro projeto para começar a receber candidaturas de voluntários.</p>
+                <button mat-flat-button color="primary" routerLink="/ngo/create-project">
+                    Criar Primeiro Projeto
+                </button>
+            </mat-card>
+            } @else {
+            @for (item of opportunitiesWithApplications(); track item.opportunity.id) {
+            <mat-card class="opportunity-card">
+                <mat-card-header>
+                    <mat-card-title>{{ item.opportunity.title }}</mat-card-title>
+                    <mat-card-subtitle>
+                        <span class="location">📍 {{ item.opportunity.location }}</span>
+                        <span class="volunteers">👥 {{ item.opportunity.volunteersActive }} voluntários ativos</span>
+                    </mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <div class="applications-header">
+                        <h3>Candidaturas ({{ item.applications.length }})</h3>
+                    </div>
+
+                    @if (item.applications.length === 0) {
+                    <div class="no-applications">
+                        <p>Nenhuma candidatura recebida ainda para este projeto.</p>
+                    </div>
+                    } @else {
+                    <div class="applications-list">
+                        @for (app of item.applications; track app.id) {
+                        <div class="application-item" [class]="getStatusClass(app.status)">
+                            <div class="application-info">
+                                <div class="volunteer-header">
+                                    <h4>{{ app.volunteerName }}</h4>
+                                    <span class="status-badge" [class]="getStatusClass(app.status)">
+                                        {{ getStatusLabel(app.status) }}
+                                    </span>
+                                </div>
+                                <p class="volunteer-email">✉️ {{ app.volunteerEmail }}</p>
+                                <p class="application-date">
+                                    📅 Candidatura enviada em {{ app.appliedDate | date: 'dd/MM/yyyy HH:mm' }}
+                                </p>
+                                @if (app.message) {
+                                <div class="application-message">
+                                    <strong>Mensagem:</strong>
+                                    <p>{{ app.message }}</p>
+                                </div>
+                                }
+                            </div>
+
+                            @if (app.status === 'pending') {
+                            <div class="application-actions">
+                                <button mat-flat-button color="primary" (click)="acceptApplication(app)">
+                                    <mat-icon>check</mat-icon>
+                                    Aceitar
+                                </button>
+                                <button mat-stroked-button color="warn" (click)="rejectApplication(app)">
+                                    <mat-icon>close</mat-icon>
+                                    Recusar
+                                </button>
+                            </div>
+                            }
+                        </div>
+                        }
+                    </div>
+                    }
+                </mat-card-content>
+            </mat-card>
+            }
+            }
+        </div>
+    </div>
+</div>

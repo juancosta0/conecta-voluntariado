@@ -25,7 +25,7 @@ export class LoginComponent {
         if (this.loginForm.valid) {
             const { username, password } = this.loginForm.value;
             if (this.authService.login(username!, password!)) {
-                this.router.navigate(['/']);
+                // Navigation is handled by AuthService
             } else {
                 this.snackBar.open('Credenciais inválidas (Tente admin/admin)', 'Fechar', { duration: 3000 });
             }

@@ -1,0 +1,47 @@
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+mat-card {
+    padding: 24px;
+}
+
+mat-card-header {
+    margin-bottom: 24px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.section-divider {
+    grid-column: 1 / -1;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.section-divider h3 {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.form-actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}

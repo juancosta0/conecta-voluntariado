@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { OpportunityService, Opportunity } from '../../../core/services/opportunity.service';
 
 @Component({
@@ -9,16 +10,32 @@ import { OpportunityService, Opportunity } from '../../../core/services/opportun
 })
 export class OpportunitiesListComponent implements OnInit {
     private opportunityService = inject(OpportunityService);
+    private route = inject(ActivatedRoute);
+
     opportunities: Opportunity[] = [];
     searchTerm = '';
 
     ngOnInit() {
-        this.loadOpportunities();
+        // Check for organization filter from query params
+        this.route.queryParams.subscribe(params => {
+            const organizationId = params['organizationId'];
+            if (organizationId) {
+                this.loadOpportunitiesByOrganization(Number(organizationId));
+            } else {
+                this.loadOpportunities();
+            }
+        });
     }
 
     loadOpportunities() {
         this.opportunityService.getOpportunities().subscribe(
             data => this.opportunities = data
+        );
+    }
+
+    loadOpportunitiesByOrganization(organizationId: number) {
+        this.opportunityService.getOpportunities().subscribe(
+            data => this.opportunities = data.filter(opp => opp.organizationId === organizationId)
         );
     }
 
@@ -30,5 +47,10 @@ export class OpportunitiesListComponent implements OnInit {
         } else {
             this.loadOpportunities();
         }
+    }
+
+    onImageError(event: Event) {
+        const img = event.target as HTMLImageElement;
+        img.src = 'https://via.placeholder.com/800x400/e0e0e0/666666?text=Imagem+Indisponível';
     }
 }

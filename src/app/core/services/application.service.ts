@@ -36,4 +36,16 @@ export class ApplicationService {
     deleteApplication(applicationId: number): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}/applications/${applicationId}`);
     }
+
+    // Get applications for all opportunities belonging to an NGO
+    getApplicationsByNgo(ngoId: number): Observable<Application[]> {
+        // First get all opportunities for this NGO, then get applications for those opportunities
+        // In a real API, this would be a single query with joins
+        return this.http.get<Application[]>(`${this.apiUrl}/applications?_expand=opportunity`);
+    }
+
+    // Get applications with expanded details (volunteer and opportunity info)
+    getApplicationsWithDetails(opportunityId: number): Observable<Application[]> {
+        return this.http.get<Application[]>(`${this.apiUrl}/applications?opportunityId=${opportunityId}`);
+    }
 }

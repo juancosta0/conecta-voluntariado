@@ -11,12 +11,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import { HeaderComponent } from './components/header/header.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 @NgModule({
     declarations: [
-        HeaderComponent
+        HeaderComponent,
+        NotificationsComponent
     ],
     imports: [
         CommonModule,
@@ -29,7 +34,10 @@ import { HeaderComponent } from './components/header/header.component';
         MatInputModule,
         MatFormFieldModule,
         MatDialogModule,
-        MatChipsModule
+        MatChipsModule,
+        MatBadgeModule,
+        MatSidenavModule,
+        MatListModule
     ],
     exports: [
         CommonModule,
@@ -43,7 +51,11 @@ import { HeaderComponent } from './components/header/header.component';
         MatFormFieldModule,
         MatDialogModule,
         MatChipsModule,
-        HeaderComponent
+        MatBadgeModule,
+        MatSidenavModule,
+        MatListModule,
+        HeaderComponent,
+        NotificationsComponent
     ]
 })
 export class SharedModule { }

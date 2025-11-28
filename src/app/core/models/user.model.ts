@@ -24,6 +24,7 @@ export interface User {
 
     // Campos específicos de ONG
     organizationName?: string;
+    organizationId?: number;
     cnpj?: string;
     description?: string;
     website?: string;

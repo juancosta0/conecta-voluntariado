@@ -1,0 +1,78 @@
+<div class="profile-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Editar Perfil</mat-card-title>
+            <mat-card-subtitle>Atualize suas informações pessoais e da organização</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                <div class="form-grid">
+                    <!-- Common Fields -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome Completo</mat-label>
+                        <input matInput formControlName="name" placeholder="Seu nome">
+                        <mat-error *ngIf="profileForm.get('name')?.hasError('required')">
+                            Nome é obrigatório
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" placeholder="seu@email.com">
+                        <mat-error *ngIf="profileForm.get('email')?.hasError('required')">
+                            Email é obrigatório
+                        </mat-error>
+                        <mat-error *ngIf="profileForm.get('email')?.hasError('email')">
+                            Email inválido
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Telefone</mat-label>
+                        <input matInput formControlName="phone" placeholder="(00) 00000-0000">
+                    </mat-form-field>
+
+                    <!-- NGO Specific Fields -->
+                    @if (authService.isNGO()) {
+                    <div class="section-divider">
+                        <h3>Informações da Organização</h3>
+                    </div>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome da Organização</mat-label>
+                        <input matInput formControlName="organizationName">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Website</mat-label>
+                        <input matInput formControlName="website" placeholder="https://...">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Endereço</mat-label>
+                        <input matInput formControlName="address">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Descrição</mat-label>
+                        <textarea matInput formControlName="description" rows="4"></textarea>
+                    </mat-form-field>
+                    }
+                </div>
+
+                <div class="form-actions">
+                    <button mat-raised-button color="primary" type="submit"
+                        [disabled]="profileForm.invalid || isLoading()">
+                        @if (isLoading()) {
+                        <mat-icon>hourglass_empty</mat-icon>
+                        Salvando...
+                        } @else {
+                        Salvar Alterações
+                        }
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -52,4 +52,9 @@ export class OpportunityDetailComponent implements OnInit {
             });
         }
     }
+
+    onImageError(event: Event) {
+        const img = event.target as HTMLImageElement;
+        img.src = 'https://via.placeholder.com/800x400/e0e0e0/666666?text=Imagem+Indispon%C3%ADvel';
+    }
 }

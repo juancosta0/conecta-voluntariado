@@ -1,16 +1,40 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "username": "admin",
       "password": "admin",
       "name": "Administrador",
+      "email": "admin@conecta.com",
+      "userType": "VOLUNTEER",
       "token": "fake-jwt-token-admin"
+    },
+    {
+      "id": 2,
+      "username": "ong_esperanca",
+      "password": "esperanca123",
+      "name": "Maria Silva",
+      "email": "contato@esperanca.org",
+      "userType": "NGO",
+      "organizationName": "Instituto Esperança",
+      "organizationId": 1,
+      "token": "fake-jwt-token-ngo1"
+    },
+    {
+      "id": 3,
+      "username": "ong_maos",
+      "password": "maos123",
+      "name": "João Santos",
+      "email": "contato@maosqueajudam.org",
+      "userType": "NGO",
+      "organizationName": "Mãos que Ajudam",
+      "organizationId": 2,
+      "token": "fake-jwt-token-ngo2"
     }
   ],
   "opportunities": [
     {
-      "id": "1",
+      "id": 1,
       "title": "Apoio Escolar Comunitário",
       "organization": "Instituto Esperança",
       "rating": 4.8,
@@ -25,10 +49,12 @@
       "volunteersActive": 12,
       "urgentNeeds": [
         "Professores de Matemática"
-      ]
+      ],
+      "ngoId": 2,
+      "organizationId": 1
     },
     {
-      "id": "2",
+      "id": 2,
       "title": "Distribuição de Alimentos",
       "organization": "Mãos que Ajudam",
       "rating": 4.9,
@@ -44,10 +70,12 @@
       "urgentNeeds": [
         "Motoristas",
         "Cozinheiros"
-      ]
+      ],
+      "ngoId": 3,
+      "organizationId": 2
     },
     {
-      "id": "3",
+      "id": 3,
       "title": "Reflorestamento Urbano",
       "organization": "Verde Vida",
       "rating": 4.7,
@@ -60,10 +88,11 @@
         "Fim de Semana"
       ],
       "volunteersActive": 8,
-      "urgentNeeds": []
+      "urgentNeeds": [],
+      "organizationId": 3
     },
     {
-      "id": "4",
+      "id": 4,
       "title": "Mentoria de Carreira",
       "organization": "Futuro Jovem",
       "rating": 5,
@@ -78,16 +107,85 @@
       "volunteersActive": 40,
       "urgentNeeds": [
         "Mentores de TI"
-      ]
+      ],
+      "organizationId": 4
     }
   ],
   "applications": [
     {
-      "id": "34ff",
-      "opportunityId": "1",
+      "id": 1,
+      "opportunityId": 1,
+      "volunteerId": 1,
+      "volunteerName": "Administrador",
+      "volunteerEmail": "admin@conecta.com",
+      "opportunityTitle": "Apoio Escolar Comunitário",
+      "appliedDate": "2025-11-23T20:47:49.183Z",
+      "status": "pending",
+      "message": "Tenho experiência com ensino de matemática e gostaria de ajudar."
+    }
+  ],
+  "organizations": [
+    {
+      "id": 1,
+      "name": "Instituto Esperança",
+      "description": "Trabalhamos com educação e desenvolvimento comunitário há mais de 15 anos.",
+      "imageUrl": "https://images.unsplash.com/photo-1427751840561-9852520f8ce8?w=400",
+      "category": "Educação",
+      "volunteers": 45,
+      "projects": 12,
+      "ngoId": 2,
+      "email": "contato@esperanca.org",
+      "phone": "(11) 98765-4321",
+      "website": "https://esperanca.org"
+    },
+    {
+      "id": 2,
+      "name": "Mãos que Ajudam",
+      "description": "Focados em combater a fome e ajudar pessoas em situação de vulnerabilidade.",
+      "imageUrl": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400",
+      "category": "Social",
+      "volunteers": 78,
+      "projects": 8,
+      "ngoId": 3,
+      "email": "contato@maosqueajudam.org",
+      "phone": "(21) 97654-3210",
+      "website": "https://maosqueajudam.org"
+    },
+    {
+      "id": 3,
+      "name": "Verde Vida",
+      "description": "Preservação ambiental e reflorestamento urbano são nossas prioridades.",
+      "imageUrl": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400",
+      "category": "Meio Ambiente",
+      "volunteers": 32,
+      "projects": 15,
+      "email": "contato@verdevida.org",
+      "phone": "(41) 96543-2109",
+      "website": "https://verdevida.org"
+    },
+    {
+      "id": 4,
+      "name": "Futuro Jovem",
+      "description": "Capacitação profissional e mentoria para jovens de baixa renda.",
+      "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400",
+      "category": "Educação",
+      "volunteers": 56,
+      "projects": 20,
+      "email": "contato@futurojovem.org",
+      "phone": "(11) 95432-1098",
+      "website": "https://futurojovem.org"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
       "userId": 1,
-      "date": "2025-11-23T20:47:49.183Z",
-      "status": "pending"
+      "title": "Candidatura Recebida",
+      "message": "Sua candidatura para 'Apoio Escolar Comunitário' foi recebida e está em análise.",
+      "type": "application",
+      "read": false,
+      "createdAt": "2025-11-23T20:47:49.183Z",
+      "relatedId": 1
     }
   ]
 }

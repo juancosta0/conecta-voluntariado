@@ -14,6 +14,7 @@ export interface Opportunity {
     volunteersActive: number;
     urgentNeeds: string[];
     ngoId?: number;
+    organizationId?: number;
 }
 
 @Injectable({
@@ -28,7 +29,9 @@ export class OpportunityService {
     }
 
     searchOpportunities(term: string): Observable<Opportunity[]> {
-        return this.http.get<Opportunity[]>(`${this.apiUrl}/opportunities?q=${term}`);
+        // json-server supports q parameter for full-text search
+        // We can also filter by specific fields using title_like or organization_like
+        return this.http.get<Opportunity[]>(`${this.apiUrl}/opportunities?q=${encodeURIComponent(term)}`);
     }
 
     getOpportunityById(id: number): Observable<Opportunity> {

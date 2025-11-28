@@ -10,13 +10,14 @@
             <a routerLink="/opportunities" routerLinkActive="active">Oportunidades</a>
             <a routerLink="/organizations" routerLinkActive="active">Organizações</a>
             @if (authService.isNGO() || (authService.currentUser()?.username === 'admin')) {
-            <a routerLink="/ngo/create-project" routerLinkActive="active" class="create-project-link">Criar Projeto</a>
+            <a routerLink="/ngo" routerLinkActive="active" class="create-project-link">Painel</a>
             }
         </nav>
 
         <div class="auth-buttons">
             @if (authService.currentUser(); as user) {
             <div class="user-menu">
+                <app-notifications></app-notifications>
                 <span class="user-greeting">Olá, {{ user.name }}</span>
                 <button mat-stroked-button color="warn" (click)="authService.logout()">
                     Sair

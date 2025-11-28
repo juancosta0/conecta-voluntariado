@@ -4,7 +4,7 @@
     <p class="hero-subtitle">Conecte-se com organizações e faça a diferença na sua comunidade hoje mesmo.</p>
     <div class="hero-buttons">
       <button class="btn btn-primary" routerLink="/opportunities">Encontrar Oportunidades</button>
-      <button class="btn btn-outline">Como Funciona</button>
+      <button class="btn btn-outline" (click)="scrollToSection('como-funciona')">Como Funciona</button>
     </div>
   </div>
 </div>
@@ -33,52 +33,167 @@
   </div>
 </div>
 
-<!-- Opportunities Section -->
-<div class="container main-content">
+<!-- Carousel Section -->
+<div class="container carousel-section">
   <div class="section-header">
     <h2>Oportunidades em Destaque</h2>
-    <p>Encontre a causa perfeita para você</p>
+    <p>Descubra as causas que mais precisam de você</p>
   </div>
 
-  <div class="search-bar-container">
-    <mat-form-field appearance="outline" class="search-field">
-      <mat-label>Buscar oportunidades</mat-label>
-      <input matInput [formControl]="searchControl">
-    </mat-form-field>
-    <button mat-flat-button color="primary" class="search-btn">Buscar</button>
-  </div>
+  @if (opportunities().length > 0) {
+  <div class="carousel-container">
+    <button class="carousel-btn prev" (click)="prevSlide()" aria-label="Anterior">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
 
-  <div class="opportunities-grid">
-    @for (opp of opportunities(); track opp.id) {
-    <div class="opportunity-card" [routerLink]="['/opportunities', opp.id]">
-      <div class="card-image" [style.background-image]="'url(' + opp.imageUrl + ')'"></div>
-      <div class="card-content">
-        <div class="card-header">
-          <h3 class="card-title">{{ opp.title }}</h3>
-          <span class="rating">⭐ {{ opp.rating }}</span>
-        </div>
-        <p class="organization">{{ opp.organization }}</p>
-        <p class="location">📍 {{ opp.location }}</p>
-        <p class="description">{{ opp.description }}</p>
-
-        <div class="pills">
-          @for (cat of opp.categories; track cat) {
-          <span class="pill">{{ cat }}</span>
-          }
-        </div>
-
-        <div class="card-footer">
-          <span class="volunteers">👥 {{ opp.volunteersActive }} voluntários</span>
-          <button mat-flat-button color="primary" class="details-btn">Ver Detalhes</button>
+    <div class="carousel-wrapper">
+      @for (opp of opportunities(); track opp.id; let i = $index) {
+      <div class="carousel-slide" [class.active]="i === currentSlide">
+        <div class="carousel-content">
+          <div class="carousel-image-container">
+            <img [src]="opp.imageUrl" [alt]="opp.title" (error)="onImageError($event)" class="carousel-image">
+          </div>
+          <div class="carousel-info">
+            <div class="carousel-header">
+              <h3>{{ opp.title }}</h3>
+              <span class="rating">⭐ {{ opp.rating }}</span>
+            </div>
+            <p class="organization">{{ opp.organization }}</p>
+            <p class="location">📍 {{ opp.location }}</p>
+            <p class="description">{{ opp.description }}</p>
+            <div class="pills">
+              @for (cat of opp.categories; track cat) {
+              <span class="pill">{{ cat }}</span>
+              }
+            </div>
+            <div class="carousel-footer">
+              <span class="volunteers">👥 {{ opp.volunteersActive }} voluntários</span>
+              <button mat-flat-button color="primary" [routerLink]="['/opportunities', opp.id]">
+                Ver Detalhes
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+      }
     </div>
+
+    <button class="carousel-btn next" (click)="nextSlide()" aria-label="Próximo">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="carousel-indicators">
+    @for (opp of opportunities(); track opp.id; let i = $index) {
+    <button class="indicator" [class.active]="i === currentSlide" (click)="goToSlide(i)"
+      [attr.aria-label]="'Ir para slide ' + (i + 1)">
+    </button>
     }
   </div>
+  }
 
   <div class="view-all-section">
     <button mat-stroked-button color="primary" routerLink="/opportunities" class="view-all-btn">
       Ver Todas as Oportunidades
     </button>
+  </div>
+</div>
+
+<!-- Como Funciona Section -->
+<div id="como-funciona" class="como-funciona-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Como Funciona</h2>
+      <p>Conectar-se e fazer a diferença é simples</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon">
+          <mat-icon>person_add</mat-icon>
+        </div>
+        <h3>1. Crie sua Conta</h3>
+        <p>Cadastre-se gratuitamente como voluntário ou organização em poucos minutos.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon">
+          <mat-icon>search</mat-icon>
+        </div>
+        <h3>2. Encontre Oportunidades</h3>
+        <p>Navegue por diversas causas e encontre projetos que combinam com seus interesses e habilidades.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon">
+          <mat-icon>volunteer_activism</mat-icon>
+        </div>
+        <h3>3. Candidate-se</h3>
+        <p>Envie sua candidatura para os projetos que mais te interessam e aguarde o contato da organização.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon">
+          <mat-icon>favorite</mat-icon>
+        </div>
+        <h3>4. Faça a Diferença</h3>
+        <p>Comece a voluntariar e transforme vidas, incluindo a sua própria!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Benefícios Section -->
+<div class="beneficios-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Por que ser Voluntário?</h2>
+      <p>Descubra os benefícios de fazer parte desta comunidade</p>
+    </div>
+
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <div class="beneficio-icon">🌟</div>
+        <h3>Desenvolvimento Pessoal</h3>
+        <p>Desenvolva novas habilidades, ganhe experiência e amplie sua rede de contatos.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon">❤️</div>
+        <h3>Impacto Social</h3>
+        <p>Contribua para causas importantes e veja o resultado direto do seu trabalho na comunidade.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon">🤝</div>
+        <h3>Conexões Significativas</h3>
+        <p>Conheça pessoas inspiradoras e faça parte de uma comunidade engajada.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon">💼</div>
+        <h3>Experiência Profissional</h3>
+        <p>Adicione experiências valiosas ao seu currículo e destaque-se no mercado.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon">😊</div>
+        <h3>Bem-estar</h3>
+        <p>Estudos mostram que voluntariar aumenta a felicidade e reduz o estresse.</p>
+      </div>
+
+      <div class="beneficio-card">
+        <div class="beneficio-icon">🎯</div>
+        <h3>Propósito</h3>
+        <p>Encontre significado e propósito ao contribuir para um mundo melhor.</p>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h3>Pronto para começar?</h3>
+      <button mat-flat-button color="primary" routerLink="/register" class="cta-btn">
+        Criar Minha Conta Grátis
+      </button>
+    </div>
   </div>
 </div>

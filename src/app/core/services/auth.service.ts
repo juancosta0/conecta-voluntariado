@@ -27,8 +27,10 @@ export class AuthService {
   }
 
   login(username: string, pass: string): boolean {
+    console.log('AuthService: login attempt', username, pass);
     // Mock login logic - check against stored users or defaults
     if (username === 'admin' && pass === 'admin') {
+      console.log('AuthService: admin login success');
       const user: User = {
         id: 1,
         username: 'admin',
@@ -41,7 +43,27 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(user));
       this.router.navigate(['/']);
       return true;
+    } else if (username === 'ong_esperanca' && pass === 'esperanca123') {
+      console.log('AuthService: ngo login success');
+      const user: User = {
+        id: 2,
+        username: 'ong_esperanca',
+        name: 'Maria Silva',
+        email: 'contato@esperanca.org',
+        userType: UserType.NGO,
+        organizationName: 'Instituto Esperança',
+        organizationId: 1,
+        description: 'Trabalhamos com educação e desenvolvimento comunitário há mais de 15 anos.',
+        website: 'https://esperanca.org',
+        address: 'Rua da Esperança, 123',
+        token: 'fake-jwt-token-ngo1'
+      };
+      this.currentUser.set(user);
+      localStorage.setItem('user', JSON.stringify(user));
+      this.router.navigate(['/ngo']).then(success => console.log('Navigation to /ngo result:', success));
+      return true;
     }
+    console.log('AuthService: login failed');
     return false;
   }
 

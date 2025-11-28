@@ -8,15 +8,15 @@
         <div class="search-section">
             <mat-form-field appearance="outline" class="search-field">
                 <mat-label>Buscar oportunidades</mat-label>
-                <input matInput [(ngModel)]="searchTerm" (keyup.enter)="onSearch()">
+                <input matInput [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" placeholder="Digite para buscar...">
             </mat-form-field>
-            <button mat-raised-button color="primary" (click)="onSearch()">Buscar</button>
+            <button mat-raised-button color="primary" (click)="onSearch()" type="button">Buscar</button>
         </div>
 
         <div class="opportunities-grid">
             @for (opp of opportunities; track opp.id) {
             <mat-card class="opportunity-card" [routerLink]="['/opportunities', opp.id]">
-                <img mat-card-image [src]="opp.imageUrl" [alt]="opp.title">
+                <img mat-card-image [src]="opp.imageUrl" [alt]="opp.title" (error)="onImageError($event)" class="opportunity-image">
                 <mat-card-content>
                     <div class="card-header">
                         <h3>{{ opp.title }}</h3>

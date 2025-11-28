@@ -1,13 +1,13 @@
 @if (opportunity(); as opp) {
 <div class="detail-container container">
     <div class="detail-header">
-        <button mat-button routerLink="/" color="primary">
+        <button mat-button routerLink="/opportunities" color="primary">
             <mat-icon>arrow_back</mat-icon> Voltar
         </button>
     </div>
 
     <div class="detail-card">
-        <div class="detail-image" [style.background-image]="'url(' + opp.imageUrl + ')'"></div>
+        <img [src]="opp.imageUrl" [alt]="opp.title" (error)="onImageError($event)" class="detail-image">
 
         <div class="detail-content">
             <div class="org-info">

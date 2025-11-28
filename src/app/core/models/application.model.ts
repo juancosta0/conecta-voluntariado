@@ -1,6 +1,6 @@
 export enum ApplicationStatus {
     PENDING = 'pending',
-    APPROVED = 'approved',
+    ACCEPTED = 'accepted',
     REJECTED = 'rejected'
 }
 
@@ -8,10 +8,10 @@ export interface Application {
     id: number;
     opportunityId: number;
     volunteerId: number;
+    volunteerEmail?: string;
+    volunteerName?: string;
+    opportunityTitle?: string;
     status: ApplicationStatus;
     appliedDate: string;
     message?: string;
-    // Dados desnormalizados para facilitar exibição
-    opportunityTitle?: string;
-    volunteerName?: string;
 }
