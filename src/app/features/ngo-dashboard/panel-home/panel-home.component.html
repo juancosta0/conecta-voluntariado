@@ -1,0 +1,32 @@
+<div class="panel-home">
+    <div class="panel-header">
+        <h1>Painel de Controle</h1>
+        <p class="subtitle">Escolha uma opção para gerenciar sua organização</p>
+    </div>
+
+    <div class="panel-cards">
+        <div class="panel-card" (click)="navigateTo('/ngo/profile')">
+            <div class="card-icon">
+                <mat-icon>person</mat-icon>
+            </div>
+            <h2>Editar Perfil</h2>
+            <p>Atualize as informações da sua organização</p>
+        </div>
+
+        <div class="panel-card" (click)="navigateTo('/ngo/dashboard')">
+            <div class="card-icon">
+                <mat-icon>dashboard</mat-icon>
+            </div>
+            <h2>Dashboard</h2>
+            <p>Visualize estatísticas e candidaturas</p>
+        </div>
+
+        <div class="panel-card" (click)="navigateTo('/ngo/create-project')">
+            <div class="card-icon">
+                <mat-icon>add_circle</mat-icon>
+            </div>
+            <h2>Criar Projeto</h2>
+            <p>Publique novas oportunidades de voluntariado</p>
+        </div>
+    </div>
+</div>

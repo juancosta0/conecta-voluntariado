@@ -1,0 +1,639 @@
+      "password": "admin",
+      "name": "Administrador",
+      "email": "admin@conecta.com",
+      "userType": "VOLUNTEER",
+      "token": "fake-jwt-token-admin"
+    },
+    {
+      "id": 2,
+      "username": "ong_esperanca",
+      "password": "esperanca123",
+      "name": "Maria Silva",
+      "email": "contato@esperanca.org",
+      "userType": "NGO",
+      "organizationName": "Instituto Esperança",
+      "organizationId": 1,
+      "token": "fake-jwt-token-ngo1"
+    },
+    {
+      "id": 3,
+      "username": "ong_maos",
+      "password": "maos123",
+      "name": "João Santos",
+      "email": "contato@maosqueajudam.org",
+      "userType": "NGO",
+      "organizationName": "Mãos que Ajudam",
+      "organizationId": 2,
+      "token": "fake-jwt-token-ngo2"
+    },
+    {
+      "id": 4,
+      "username": "ong_verde",
+      "password": "verde123",
+      "name": "Ana Costa",
+      "email": "contato@verdevida.org",
+      "userType": "NGO",
+      "organizationName": "Verde Vida",
+      "organizationId": 3,
+      "token": "fake-jwt-token-ngo3"
+    },
+    {
+      "id": 5,
+      "username": "ong_futuro",
+      "password": "futuro123",
+      "name": "Carlos Mendes",
+      "email": "contato@futurojovem.org",
+      "userType": "NGO",
+      "organizationName": "Futuro Jovem",
+      "organizationId": 4,
+      "token": "fake-jwt-token-ngo4"
+    },
+    {
+      "id": 6,
+      "username": "ong_saude",
+      "password": "saude123",
+      "name": "Patricia Lima",
+      "email": "contato@saudecomunitaria.org",
+      "userType": "NGO",
+      "organizationName": "Saúde Comunitária",
+      "organizationId": 5,
+      "token": "fake-jwt-token-ngo5"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": 1,
+      "title": "Apoio Escolar Comunitário",
+      "organization": "Instituto Esperança",
+      "rating": 4.8,
+      "location": "São Paulo, SP",
+      "description": "Buscamos voluntários para auxiliar crianças do ensino fundamental com reforço escolar em matemática e português.",
+      "imageUrl": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Educação",
+        "Presencial",
+        "Crianças"
+      ],
+      "volunteersActive": 12,
+      "urgentNeeds": [
+        "Professores de Matemática"
+      ],
+      "ngoId": 2,
+      "organizationId": 1
+    },
+    {
+      "id": 2,
+      "title": "Distribuição de Alimentos",
+      "organization": "Mãos que Ajudam",
+      "rating": 4.9,
+      "location": "Rio de Janeiro, RJ",
+      "description": "Participe da nossa ação semanal de distribuição de marmitas para pessoas em situação de rua no centro da cidade.",
+      "imageUrl": "https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Alimentação",
+        "Social",
+        "Noturno"
+      ],
+      "volunteersActive": 25,
+      "urgentNeeds": [
+        "Motoristas",
+        "Cozinheiros"
+      ],
+      "ngoId": 3,
+      "organizationId": 2
+    },
+    {
+      "id": 3,
+      "title": "Reflorestamento Urbano",
+      "organization": "Verde Vida",
+      "rating": 4.7,
+      "location": "Curitiba, PR",
+      "description": "Ajude a plantar mudas de árvores nativas em parques e praças da cidade. Traga sua luva e disposição!",
+      "imageUrl": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Meio Ambiente",
+        "Ar Livre",
+        "Fim de Semana"
+      ],
+      "volunteersActive": 8,
+      "urgentNeeds": [],
+      "ngoId": 4,
+      "organizationId": 3
+    },
+    {
+      "id": 4,
+      "title": "Mentoria de Carreira",
+      "organization": "Futuro Jovem",
+      "rating": 5,
+      "location": "Remoto",
+      "description": "Mentoria online para jovens de baixa renda que estão ingressando no mercado de trabalho. 1 hora por semana.",
+      "imageUrl": "https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Mentoria",
+        "Online",
+        "Profissional"
+      ],
+      "volunteersActive": 40,
+      "urgentNeeds": [
+        "Mentores de TI"
+      ],
+      "ngoId": 5,
+      "organizationId": 4
+    },
+    {
+      "id": 5,
+      "title": "Oficina de Leitura Infantil",
+      "organization": "Instituto Esperança",
+      "rating": 4.9,
+      "location": "São Paulo, SP",
+      "description": "Conte histórias e incentive a leitura em crianças de 6 a 12 anos. Atividade semanal aos sábados pela manhã.",
+      "imageUrl": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Educação",
+        "Crianças",
+        "Cultura"
+      ],
+      "volunteersActive": 8,
+      "urgentNeeds": [],
+      "ngoId": 2,
+      "organizationId": 1
+    },
+    {
+      "id": 6,
+      "title": "Aulas de Informática Básica",
+      "organization": "Instituto Esperança",
+      "rating": 4.7,
+      "location": "São Paulo, SP",
+      "description": "Ensine informática básica para adultos e idosos. Conhecimentos em Word, Excel e navegação na internet.",
+      "imageUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Educação",
+        "Tecnologia",
+        "Idosos"
+      ],
+      "volunteersActive": 15,
+      "urgentNeeds": [
+        "Instrutores de Informática"
+      ],
+      "ngoId": 2,
+      "organizationId": 1
+    },
+    {
+      "id": 7,
+      "title": "Campanha do Agasalho",
+      "organization": "Mãos que Ajudam",
+      "rating": 5.0,
+      "location": "Rio de Janeiro, RJ",
+      "description": "Ajude na arrecadação, triagem e distribuição de roupas e cobertores para famílias carentes durante o inverno.",
+      "imageUrl": "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Social",
+        "Doação",
+        "Inverno"
+      ],
+      "volunteersActive": 30,
+      "urgentNeeds": [
+        "Motoristas",
+        "Organizadores"
+      ],
+      "ngoId": 3,
+      "organizationId": 2
+    },
+    {
+      "id": 8,
+      "title": "Visita a Asilos",
+      "organization": "Mãos que Ajudam",
+      "rating": 4.8,
+      "location": "Rio de Janeiro, RJ",
+      "description": "Faça companhia para idosos em asilos. Conversas, jogos e atividades recreativas. Quinzenalmente aos domingos.",
+      "imageUrl": "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Social",
+        "Idosos",
+        "Presencial"
+      ],
+      "volunteersActive": 18,
+      "urgentNeeds": [],
+      "ngoId": 3,
+      "organizationId": 2
+    },
+    {
+      "id": 9,
+      "title": "Limpeza de Praias",
+      "organization": "Verde Vida",
+      "rating": 4.9,
+      "location": "Guarujá, SP",
+      "description": "Mutirão mensal de limpeza de praias. Ajude a preservar nosso litoral e conscientizar banhistas.",
+      "imageUrl": "https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Meio Ambiente",
+        "Ar Livre",
+        "Praia"
+      ],
+      "volunteersActive": 45,
+      "urgentNeeds": [
+        "Coordenadores"
+      ],
+      "ngoId": 4,
+      "organizationId": 3
+    },
+    {
+      "id": 10,
+      "title": "Horta Comunitária",
+      "organization": "Verde Vida",
+      "rating": 4.6,
+      "location": "Curitiba, PR",
+      "description": "Cultive alimentos orgânicos em hortas comunitárias. Aprenda sobre agricultura urbana e alimentação saudável.",
+      "imageUrl": "https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Meio Ambiente",
+        "Alimentação",
+        "Sustentabilidade"
+      ],
+      "volunteersActive": 22,
+      "urgentNeeds": [],
+      "ngoId": 4,
+      "organizationId": 3
+    },
+    {
+      "id": 11,
+      "title": "Workshop de Programação",
+      "organization": "Futuro Jovem",
+      "rating": 4.9,
+      "location": "Remoto",
+      "description": "Ensine programação básica (Python, HTML/CSS) para jovens interessados em tecnologia. Online, 2x por semana.",
+      "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Educação",
+        "Tecnologia",
+        "Online"
+      ],
+      "volunteersActive": 35,
+      "urgentNeeds": [
+        "Desenvolvedores",
+        "Designers"
+      ],
+      "ngoId": 5,
+      "organizationId": 4
+    },
+    {
+      "id": 12,
+      "title": "Preparação para Entrevistas",
+      "organization": "Futuro Jovem",
+      "rating": 5.0,
+      "location": "Remoto",
+      "description": "Ajude jovens a se prepararem para entrevistas de emprego. Simulações, dicas de currículo e postura profissional.",
+      "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Mentoria",
+        "Profissional",
+        "Online"
+      ],
+      "volunteersActive": 28,
+      "urgentNeeds": [],
+      "ngoId": 5,
+      "organizationId": 4
+    },
+    {
+      "id": 13,
+      "title": "Campanha de Vacinação",
+      "organization": "Saúde Comunitária",
+      "rating": 5.0,
+      "location": "Belo Horizonte, MG",
+      "description": "Apoie campanhas de vacinação em comunidades carentes. Ajude na organização, cadastro e orientação.",
+      "imageUrl": "https://images.unsplash.com/photo-1584515933487-779824d29309?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Saúde",
+        "Presencial",
+        "Urgente"
+      ],
+      "volunteersActive": 50,
+      "urgentNeeds": [
+        "Profissionais de Saúde",
+        "Organizadores"
+      ],
+      "ngoId": 6,
+      "organizationId": 5
+    },
+    {
+      "id": 14,
+      "title": "Aferição de Pressão Arterial",
+      "organization": "Saúde Comunitária",
+      "rating": 4.8,
+      "location": "Belo Horizonte, MG",
+      "description": "Realize aferição de pressão arterial em feiras de saúde comunitárias. Necessário conhecimento básico em saúde.",
+      "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Saúde",
+        "Presencial",
+        "Idosos"
+      ],
+      "volunteersActive": 20,
+      "urgentNeeds": [],
+      "ngoId": 6,
+      "organizationId": 5
+    },
+    {
+      "id": 15,
+      "title": "Palestras de Saúde Mental",
+      "organization": "Saúde Comunitária",
+      "rating": 4.9,
+      "location": "Remoto",
+      "description": "Conduza palestras online sobre saúde mental, ansiedade e depressão. Psicólogos e estudantes de psicologia são bem-vindos.",
+      "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Saúde",
+        "Mental",
+        "Online"
+      ],
+      "volunteersActive": 12,
+      "urgentNeeds": [
+        "Psicólogos"
+      ],
+      "ngoId": 6,
+      "organizationId": 5
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "opportunityId": 1,
+      "volunteerId": 1,
+      "volunteerName": "Administrador",
+      "volunteerEmail": "admin@conecta.com",
+      "opportunityTitle": "Apoio Escolar Comunitário",
+      "appliedDate": "2025-11-23T20:47:49.183Z",
+      "status": "pending",
+      "message": "Tenho experiência com ensino de matemática e gostaria de ajudar."
+    }
+  ],
+  "organizations": [
+    {
+      "id": 1,
+      "name": "Instituto Esperança",
+      "description": "Trabalhamos com educação e desenvolvimento comunitário há mais de 15 anos.",
+      "imageUrl": "https://images.unsplash.com/photo-1427751840561-9852520f8ce8?w=400",
+      "category": "Educação",
+      "volunteers": 45,
+      "projects": 12,
+      "ngoId": 2,
+      "email": "contato@esperanca.org",
+      "phone": "(11) 98765-4321",
+      "website": "https://esperanca.org"
+    },
+    {
+      "id": 2,
+      "name": "Mãos que Ajudam",
+      "description": "Focados em combater a fome e ajudar pessoas em situação de vulnerabilidade.",
+      "imageUrl": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400",
+      "category": "Social",
+      "volunteers": 78,
+      "projects": 8,
+      "ngoId": 3,
+      "email": "contato@maosqueajudam.org",
+      "phone": "(21) 97654-3210",
+      "website": "https://maosqueajudam.org"
+    },
+    {
+      "id": 3,
+      "name": "Verde Vida",
+      "description": "Preservação ambiental e reflorestamento urbano são nossas prioridades.",
+      "imageUrl": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400",
+      "category": "Meio Ambiente",
+      "volunteers": 32,
+      "projects": 15,
+      "ngoId": 4,
+      "email": "contato@verdevida.org",
+      "phone": "(41) 96543-2109",
+      "website": "https://verdevida.org"
+    },
+    {
+      "id": 4,
+      "name": "Futuro Jovem",
+      "description": "Capacitação profissional e mentoria para jovens de baixa renda.",
+      "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400",
+      "category": "Educação",
+      "volunteers": 56,
+      "projects": 20,
+      "ngoId": 5,
+      "email": "contato@futurojovem.org",
+      "phone": "(11) 95432-1098",
+      "website": "https://futurojovem.org"
+    },
+    {
+      "id": 5,
+      "name": "Saúde Comunitária",
+      "description": "Promovemos saúde e bem-estar em comunidades carentes através de ações preventivas e educativas.",
+      "imageUrl": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400",
+      "category": "Saúde",
+      "volunteers": 65,
+      "projects": 18,
+      "ngoId": 6,
+      "email": "contato@saudecomunitaria.org",
+      "phone": "(31) 94321-0987",
+      "website": "https://saudecomunitaria.org"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "location": "Curitiba, PR",
+      "description": "Cultive alimentos orgânicos em hortas comunitárias. Aprenda sobre agricultura urbana e alimentação saudável.",
+      "imageUrl": "https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Meio Ambiente",
+        "Alimentação",
+        "Sustentabilidade"
+      ],
+      "volunteersActive": 22,
+      "urgentNeeds": [],
+      "ngoId": 4,
+      "organizationId": 3
+    },
+    {
+      "id": 11,
+      "title": "Workshop de Programação",
+      "organization": "Futuro Jovem",
+      "rating": 4.9,
+      "location": "Remoto",
+      "description": "Ensine programação básica (Python, HTML/CSS) para jovens interessados em tecnologia. Online, 2x por semana.",
+      "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Educação",
+        "Tecnologia",
+        "Online"
+      ],
+      "volunteersActive": 35,
+      "urgentNeeds": [
+        "Desenvolvedores",
+        "Designers"
+      ],
+      "ngoId": 5,
+      "organizationId": 4
+    },
+    {
+      "id": 12,
+      "title": "Preparação para Entrevistas",
+      "organization": "Futuro Jovem",
+      "rating": 5.0,
+      "location": "Remoto",
+      "description": "Ajude jovens a se prepararem para entrevistas de emprego. Simulações, dicas de currículo e postura profissional.",
+      "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Mentoria",
+        "Profissional",
+        "Online"
+      ],
+      "volunteersActive": 28,
+      "urgentNeeds": [],
+      "ngoId": 5,
+      "organizationId": 4
+    },
+    {
+      "id": 13,
+      "title": "Campanha de Vacinação",
+      "organization": "Saúde Comunitária",
+      "rating": 5.0,
+      "location": "Belo Horizonte, MG",
+      "description": "Apoie campanhas de vacinação em comunidades carentes. Ajude na organização, cadastro e orientação.",
+      "imageUrl": "https://images.unsplash.com/photo-1584515933487-779824d29309?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Saúde",
+        "Presencial",
+        "Urgente"
+      ],
+      "volunteersActive": 50,
+      "urgentNeeds": [
+        "Profissionais de Saúde",
+        "Organizadores"
+      ],
+      "ngoId": 6,
+      "organizationId": 5
+    },
+    {
+      "id": 14,
+      "title": "Aferição de Pressão Arterial",
+      "organization": "Saúde Comunitária",
+      "rating": 4.8,
+      "location": "Belo Horizonte, MG",
+      "description": "Realize aferição de pressão arterial em feiras de saúde comunitárias. Necessário conhecimento básico em saúde.",
+      "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Saúde",
+        "Presencial",
+        "Idosos"
+      ],
+      "volunteersActive": 20,
+      "urgentNeeds": [],
+      "ngoId": 6,
+      "organizationId": 5
+    },
+    {
+      "id": 15,
+      "title": "Palestras de Saúde Mental",
+      "organization": "Saúde Comunitária",
+      "rating": 4.9,
+      "location": "Remoto",
+      "description": "Conduza palestras online sobre saúde mental, ansiedade e depressão. Psicólogos e estudantes de psicologia são bem-vindos.",
+      "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "categories": [
+        "Saúde",
+        "Mental",
+        "Online"
+      ],
+      "volunteersActive": 12,
+      "urgentNeeds": [
+        "Psicólogos"
+      ],
+      "ngoId": 6,
+      "organizationId": 5
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "opportunityId": 1,
+      "volunteerId": 1,
+      "volunteerName": "Administrador",
+      "volunteerEmail": "admin@conecta.com",
+      "opportunityTitle": "Apoio Escolar Comunitário",
+      "appliedDate": "2025-11-23T20:47:49.183Z",
+      "status": "pending",
+      "message": "Tenho experiência com ensino de matemática e gostaria de ajudar."
+    }
+  ],
+  "organizations": [
+    {
+      "id": 1,
+      "name": "Instituto Esperança",
+      "description": "Trabalhamos com educação e desenvolvimento comunitário há mais de 15 anos.",
+      "imageUrl": "https://images.unsplash.com/photo-1427751840561-9852520f8ce8?w=400",
+      "category": "Educação",
+      "volunteers": 45,
+      "projects": 12,
+      "ngoId": 2,
+      "email": "contato@esperanca.org",
+      "phone": "(11) 98765-4321",
+      "website": "https://esperanca.org"
+    },
+    {
+      "id": 2,
+      "name": "Mãos que Ajudam",
+      "description": "Focados em combater a fome e ajudar pessoas em situação de vulnerabilidade.",
+      "imageUrl": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400",
+      "category": "Social",
+      "volunteers": 78,
+      "projects": 8,
+      "ngoId": 3,
+      "email": "contato@maosqueajudam.org",
+      "phone": "(21) 97654-3210",
+      "website": "https://maosqueajudam.org"
+    },
+    {
+      "id": 3,
+      "name": "Verde Vida",
+      "description": "Preservação ambiental e reflorestamento urbano são nossas prioridades.",
+      "imageUrl": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400",
+      "category": "Meio Ambiente",
+      "volunteers": 32,
+      "projects": 15,
+      "ngoId": 4,
+      "email": "contato@verdevida.org",
+      "phone": "(41) 96543-2109",
+      "website": "https://verdevida.org"
+    },
+    {
+      "id": 4,
+      "name": "Futuro Jovem",
+      "description": "Capacitação profissional e mentoria para jovens de baixa renda.",
+      "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400",
+      "category": "Educação",
+      "volunteers": 56,
+      "projects": 20,
+      "ngoId": 5,
+      "email": "contato@futurojovem.org",
+      "phone": "(11) 95432-1098",
+      "website": "https://futurojovem.org"
+    },
+    {
+      "id": 5,
+      "name": "Saúde Comunitária",
+      "description": "Promovemos saúde e bem-estar em comunidades carentes através de ações preventivas e educativas.",
+      "imageUrl": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400",
+      "category": "Saúde",
+      "volunteers": 65,
+      "projects": 18,
+      "ngoId": 6,
+      "email": "contato@saudecomunitaria.org",
+      "phone": "(31) 94321-0987",
+      "website": "https://saudecomunitaria.org"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "userId": 1,
+      "date": "2025-11-23T20:47:49.183Z",
+      "status": "pending"
+    }
+  ]
