@@ -1,0 +1,131 @@
+<div class="profile-container">
+    <div class="container">
+        @if (currentUser(); as user) {
+        <div class="profile-header">
+            <div class="profile-avatar">
+                @if (user.avatar) {
+                <img [src]="user.avatar" [alt]="user.name">
+                } @else {
+                <div class="avatar-placeholder">
+                    <mat-icon>person</mat-icon>
+                </div>
+                }
+            </div>
+            <div class="profile-info">
+                <h1>{{ user.name }}</h1>
+                <p class="email">{{ user.email }}</p>
+                @if (user.phone) {
+                <p class="phone">{{ user.phone }}</p>
+                }
+            </div>
+            <button mat-flat-button color="primary" (click)="toggleEdit()">
+                <mat-icon>{{ isEditing() ? 'close' : 'edit' }}</mat-icon>
+                {{ isEditing() ? 'Cancelar' : 'Editar Perfil' }}
+            </button>
+        </div>
+
+        <div class="profile-content">
+            <!-- Bio Section -->
+            <mat-card class="profile-section">
+                <mat-card-header>
+                    <mat-card-title>Sobre Mim</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    @if (user.bio) {
+                    <p>{{ user.bio }}</p>
+                    } @else {
+                    <p class="empty-state">Adicione uma biografia para se apresentar às ONGs.</p>
+                    }
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Skills Section -->
+            <mat-card class="profile-section">
+                <mat-card-header>
+                    <mat-card-title>Habilidades</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    @if (user.skills && user.skills.length > 0) {
+                    <div class="skills-list">
+                        @for (skill of user.skills; track skill) {
+                        <span class="skill-badge">{{ skill }}</span>
+                        }
+                    </div>
+                    } @else {
+                    <p class="empty-state">Adicione suas habilidades.</p>
+                    }
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Interests Section -->
+            <mat-card class="profile-section">
+                <mat-card-header>
+                    <mat-card-title>Interesses</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    @if (user.interests && user.interests.length > 0) {
+                    <div class="interests-list">
+                        @for (interest of user.interests; track interest) {
+                        <span class="interest-badge">{{ interest }}</span>
+                        }
+                    </div>
+                    } @else {
+                    <p class="empty-state">Adicione seus interesses.</p>
+                    }
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Availability Section -->
+            <mat-card class="profile-section">
+                <mat-card-header>
+                    <mat-card-title>Disponibilidade</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    @if (user.availability) {
+                    <p>{{ user.availability }}</p>
+                    } @else {
+                    <p class="empty-state">Informe sua disponibilidade.</p>
+                    }
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Applications Section -->
+            <mat-card class="profile-section applications-section">
+                <mat-card-header>
+                    <mat-card-title>Minhas Candidaturas</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    @if (myApplications().length > 0) {
+                    <div class="applications-list">
+                        @for (app of myApplications(); track app.id) {
+                        <div class="application-card" [class]="getStatusClass(app.status)">
+                            <div class="application-header">
+                                <h3>{{ app.opportunityTitle }}</h3>
+                                <span class="status-badge" [class]="getStatusClass(app.status)">
+                                    {{ getStatusLabel(app.status) }}
+                                </span>
+                            </div>
+                            <p class="application-date">
+                                Candidatura enviada em {{ app.appliedDate | date: 'dd/MM/yyyy HH:mm' }}
+                            </p>
+                            @if (app.message) {
+                            <p class="application-message">{{ app.message }}</p>
+                            }
+                        </div>
+                        }
+                    </div>
+                    } @else {
+                    <div class="empty-state">
+                        <mat-icon>inbox</mat-icon>
+                        <p>Você ainda não se candidatou a nenhuma oportunidade.</p>
+                        <button mat-flat-button color="primary" routerLink="/opportunities">
+                            Ver Oportunidades
+                        </button>
+                    </div>
+                    }
+                </mat-card-content>
+            </mat-card>
+        </div>
+        }
+    </div>
+</div>

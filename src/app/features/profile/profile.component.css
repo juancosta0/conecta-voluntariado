@@ -1,0 +1,198 @@
+.profile-container {
+    background: #f5f7fa;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar img,
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.avatar-placeholder mat-icon {
+    font-size: 60px;
+    width: 60px;
+    height: 60px;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    color: #333;
+}
+
+.profile-info .email,
+.profile-info .phone {
+    margin: 0.25rem 0;
+    color: #666;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.profile-section {
+    padding: 0;
+}
+
+.profile-section mat-card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+}
+
+.profile-section mat-card-title {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.profile-section mat-card-content {
+    padding: 1.5rem;
+}
+
+.empty-state {
+    text-align: center;
+    color: #999;
+    padding: 2rem;
+}
+
+.empty-state mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.skills-list,
+.interests-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-badge,
+.interest-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.skill-badge {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.interest-badge {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.applications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.application-card {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.application-card.status-accepted {
+    border-left-color: #4caf50;
+    background: #f1f8f4;
+}
+
+.application-card.status-rejected {
+    border-left-color: #f44336;
+    background: #fef5f5;
+    opacity: 0.7;
+}
+
+.application-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.application-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.status-badge {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-badge.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.status-accepted {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.application-date {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.5rem 0;
+}
+
+.application-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}

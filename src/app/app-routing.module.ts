@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'ngo',
     loadChildren: () => import('./features/ngo-dashboard/ngo-dashboard.module').then(m => m.NgoDashboardModule)
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
+  },
   { path: '**', redirectTo: '' }
 ];
 

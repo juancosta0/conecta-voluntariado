@@ -12,6 +12,9 @@
             @if (authService.isNGO() || (authService.currentUser()?.username === 'admin')) {
             <a routerLink="/ngo" routerLinkActive="active" class="create-project-link">Painel</a>
             }
+            @if (authService.currentUser() && !authService.isNGO() && authService.currentUser()?.username !== 'admin') {
+            <a routerLink="/profile" routerLinkActive="active" class="profile-link">Perfil</a>
+            }
         </nav>
 
         <div class="auth-buttons">

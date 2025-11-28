@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "admin",
       "password": "admin",
       "name": "Administrador",
@@ -10,7 +10,7 @@
       "token": "fake-jwt-token-admin"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "ong_esperanca",
       "password": "esperanca123",
       "name": "Maria Silva",
@@ -21,7 +21,7 @@
       "token": "fake-jwt-token-ngo1"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "ong_maos",
       "password": "maos123",
       "name": "Joao Santos",
@@ -32,7 +32,7 @@
       "token": "fake-jwt-token-ngo2"
     },
     {
-      "id": 4,
+      "id": "4",
       "username": "ong_verde",
       "password": "verde123",
       "name": "Ana Costa",
@@ -43,7 +43,7 @@
       "token": "fake-jwt-token-ngo3"
     },
     {
-      "id": 5,
+      "id": "5",
       "username": "ong_futuro",
       "password": "futuro123",
       "name": "Carlos Mendes",
@@ -54,7 +54,7 @@
       "token": "fake-jwt-token-ngo4"
     },
     {
-      "id": 6,
+      "id": "6",
       "username": "ong_saude",
       "password": "saude123",
       "name": "Patricia Lima",
@@ -63,11 +63,202 @@
       "organizationName": "Saude Comunitaria",
       "organizationId": 5,
       "token": "fake-jwt-token-ngo5"
+    },
+    {
+      "id": "7",
+      "username": "joao.silva",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "João Silva",
+      "email": "joao.silva@email.com",
+      "phone": "(11) 98765-4321",
+      "avatar": "https://i.pravatar.cc/150?img=12",
+      "bio": "Professor de português com 5 anos de experiência. Apaixonado por educação e desenvolvimento comunitário.",
+      "skills": [
+        "Educação",
+        "Português",
+        "Didática",
+        "Comunicação"
+      ],
+      "interests": [
+        "Educação",
+        "Crianças",
+        "Literatura"
+      ],
+      "availability": "Sábados e domingos, 14h-18h",
+      "token": "fake-jwt-token-vol1"
+    },
+    {
+      "id": "8",
+      "username": "maria.santos",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "Maria Santos",
+      "email": "maria.santos@email.com",
+      "phone": "(21) 97654-3210",
+      "avatar": "https://i.pravatar.cc/150?img=45",
+      "bio": "Contadora de histórias e amante da literatura infantil. Trabalho com crianças há 3 anos.",
+      "skills": [
+        "Contação de Histórias",
+        "Literatura",
+        "Teatro",
+        "Criatividade"
+      ],
+      "interests": [
+        "Crianças",
+        "Educação",
+        "Arte"
+      ],
+      "availability": "Terças e quintas, 16h-19h",
+      "token": "fake-jwt-token-vol2"
+    },
+    {
+      "id": "9",
+      "username": "pedro.oliveira",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "Pedro Oliveira",
+      "email": "pedro.oliveira@email.com",
+      "phone": "(11) 96543-2109",
+      "avatar": "https://i.pravatar.cc/150?img=33",
+      "bio": "Motorista autônomo com veículo próprio. Gosto de ajudar em ações sociais de distribuição.",
+      "skills": [
+        "Direção",
+        "Logística",
+        "Organização"
+      ],
+      "interests": [
+        "Social",
+        "Comunidade",
+        "Ajuda Humanitária"
+      ],
+      "availability": "Finais de semana, período integral",
+      "token": "fake-jwt-token-vol3"
+    },
+    {
+      "id": "10",
+      "username": "ana.rodrigues",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "Ana Rodrigues",
+      "email": "ana.rodrigues@email.com",
+      "phone": "(41) 95432-1098",
+      "avatar": "https://i.pravatar.cc/150?img=25",
+      "bio": "Bióloga e ativista ambiental. Dedico meu tempo livre à preservação do meio ambiente.",
+      "skills": [
+        "Biologia",
+        "Meio Ambiente",
+        "Educação Ambiental",
+        "Pesquisa"
+      ],
+      "interests": [
+        "Meio Ambiente",
+        "Sustentabilidade",
+        "Natureza"
+      ],
+      "availability": "Sábados, 8h-14h",
+      "token": "fake-jwt-token-vol4"
+    },
+    {
+      "id": "11",
+      "username": "carlos.ferreira",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "Carlos Ferreira",
+      "email": "carlos.ferreira@email.com",
+      "phone": "(11) 94321-0987",
+      "avatar": "https://i.pravatar.cc/150?img=68",
+      "bio": "Desenvolvedor de software sênior. Quero compartilhar meu conhecimento em tecnologia com jovens.",
+      "skills": [
+        "Programação",
+        "JavaScript",
+        "Python",
+        "Mentoria"
+      ],
+      "interests": [
+        "Tecnologia",
+        "Educação",
+        "Jovens"
+      ],
+      "availability": "Quartas, 19h-21h",
+      "token": "fake-jwt-token-vol5"
+    },
+    {
+      "id": "12",
+      "username": "julia.costa",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "Júlia Costa",
+      "email": "julia.costa@email.com",
+      "phone": "(31) 93210-9876",
+      "avatar": "https://i.pravatar.cc/150?img=47",
+      "bio": "Enfermeira com experiência em saúde comunitária. Acredito no poder da prevenção.",
+      "skills": [
+        "Enfermagem",
+        "Saúde",
+        "Primeiros Socorros",
+        "Educação em Saúde"
+      ],
+      "interests": [
+        "Saúde",
+        "Comunidade",
+        "Prevenção"
+      ],
+      "availability": "Domingos, 9h-13h",
+      "token": "fake-jwt-token-vol6"
+    },
+    {
+      "id": "13",
+      "username": "rafael.alves",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "Rafael Alves",
+      "email": "rafael.alves@email.com",
+      "phone": "(21) 92109-8765",
+      "avatar": "https://i.pravatar.cc/150?img=52",
+      "bio": "Coach de carreira e recursos humanos. Ajudo pessoas a alcançarem seus objetivos profissionais.",
+      "skills": [
+        "Coaching",
+        "RH",
+        "Entrevistas",
+        "Desenvolvimento Profissional"
+      ],
+      "interests": [
+        "Carreira",
+        "Desenvolvimento Pessoal",
+        "Jovens"
+      ],
+      "availability": "Segundas e quartas, 18h-20h",
+      "token": "fake-jwt-token-vol7"
+    },
+    {
+      "id": "14",
+      "username": "fernanda.lima",
+      "password": "senha123",
+      "userType": "volunteer",
+      "name": "Fernanda Lima",
+      "email": "fernanda.lima@email.com",
+      "phone": "(11) 91098-7654",
+      "avatar": "https://i.pravatar.cc/150?img=38",
+      "bio": "Psicóloga clínica especializada em saúde mental. Ofereço palestras e orientação gratuita.",
+      "skills": [
+        "Psicologia",
+        "Saúde Mental",
+        "Palestras",
+        "Aconselhamento"
+      ],
+      "interests": [
+        "Saúde Mental",
+        "Bem-estar",
+        "Comunidade"
+      ],
+      "availability": "Sábados, 10h-12h",
+      "token": "fake-jwt-token-vol8"
     }
   ],
   "opportunities": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Apoio Escolar Comunitario",
       "organization": "Instituto Esperanca",
       "rating": 4.8,
@@ -87,7 +278,7 @@
       "organizationId": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Distribuicao de Alimentos",
       "organization": "Maos que Ajudam",
       "rating": 4.9,
@@ -108,7 +299,7 @@
       "organizationId": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Reflorestamento Urbano",
       "organization": "Verde Vida",
       "rating": 4.7,
@@ -126,7 +317,7 @@
       "organizationId": 3
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Mentoria de Carreira",
       "organization": "Futuro Jovem",
       "rating": 5,
@@ -146,7 +337,7 @@
       "organizationId": 4
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Oficina de Leitura Infantil",
       "organization": "Instituto Esperanca",
       "rating": 4.9,
@@ -164,7 +355,7 @@
       "organizationId": 1
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Aulas de Informatica Basica",
       "organization": "Instituto Esperanca",
       "rating": 4.7,
@@ -184,10 +375,10 @@
       "organizationId": 1
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Campanha do Agasalho",
       "organization": "Maos que Ajudam",
-      "rating": 5.0,
+      "rating": 5,
       "location": "Rio de Janeiro, RJ",
       "description": "Ajude na arrecadacao, triagem e distribuicao de roupas e cobertores.",
       "imageUrl": "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -205,7 +396,7 @@
       "organizationId": 2
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "Visita a Asilos",
       "organization": "Maos que Ajudam",
       "rating": 4.8,
@@ -223,7 +414,7 @@
       "organizationId": 2
     },
     {
-      "id": 9,
+      "id": "9",
       "title": "Limpeza de Praias",
       "organization": "Verde Vida",
       "rating": 4.9,
@@ -243,7 +434,7 @@
       "organizationId": 3
     },
     {
-      "id": 10,
+      "id": "10",
       "title": "Horta Comunitaria",
       "organization": "Verde Vida",
       "rating": 4.6,
@@ -261,7 +452,7 @@
       "organizationId": 3
     },
     {
-      "id": 11,
+      "id": "11",
       "title": "Workshop de Programacao",
       "organization": "Futuro Jovem",
       "rating": 4.9,
@@ -282,10 +473,10 @@
       "organizationId": 4
     },
     {
-      "id": 12,
+      "id": "12",
       "title": "Preparacao para Entrevistas",
       "organization": "Futuro Jovem",
-      "rating": 5.0,
+      "rating": 5,
       "location": "Remoto",
       "description": "Ajude jovens a se prepararem para entrevistas de emprego.",
       "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -300,10 +491,10 @@
       "organizationId": 4
     },
     {
-      "id": 13,
+      "id": "13",
       "title": "Campanha de Vacinacao",
       "organization": "Saude Comunitaria",
-      "rating": 5.0,
+      "rating": 5,
       "location": "Belo Horizonte, MG",
       "description": "Apoie campanhas de vacinacao em comunidades carentes.",
       "imageUrl": "https://images.unsplash.com/photo-1584515933487-779824d29309?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -321,7 +512,7 @@
       "organizationId": 5
     },
     {
-      "id": 14,
+      "id": "14",
       "title": "Afericao de Pressao Arterial",
       "organization": "Saude Comunitaria",
       "rating": 4.8,
@@ -339,7 +530,7 @@
       "organizationId": 5
     },
     {
-      "id": 15,
+      "id": "15",
       "title": "Palestras de Saude Mental",
       "organization": "Saude Comunitaria",
       "rating": 4.9,
@@ -361,20 +552,119 @@
   ],
   "applications": [
     {
-      "id": 1,
+      "id": "1",
       "opportunityId": 1,
-      "volunteerId": 1,
-      "volunteerName": "Administrador",
-      "volunteerEmail": "admin@conecta.com",
+      "volunteerId": 7,
+      "volunteerName": "João Silva",
+      "volunteerEmail": "joao.silva@email.com",
       "opportunityTitle": "Apoio Escolar Comunitario",
       "appliedDate": "2025-11-23T20:47:49.183Z",
       "status": "pending",
       "message": "Tenho experiencia com ensino de matematica e gostaria de ajudar."
+    },
+    {
+      "id": "2",
+      "opportunityId": 1,
+      "volunteerId": 7,
+      "volunteerName": "João Silva",
+      "volunteerEmail": "joao.silva@email.com",
+      "opportunityTitle": "Apoio Escolar Comunitario",
+      "appliedDate": "2025-11-24T10:30:00.000Z",
+      "status": "rejected",
+      "message": "Sou professor de portugues e tenho disponibilidade aos sabados."
+    },
+    {
+      "id": "3",
+      "opportunityId": 5,
+      "volunteerId": 8,
+      "volunteerName": "Maria Santos",
+      "volunteerEmail": "maria.santos@email.com",
+      "opportunityTitle": "Oficina de Leitura Infantil",
+      "appliedDate": "2025-11-25T14:15:00.000Z",
+      "status": "accepted",
+      "message": "Adoro trabalhar com criancas e tenho experiencia em contacao de historias."
+    },
+    {
+      "id": "4",
+      "opportunityId": 2,
+      "volunteerId": 9,
+      "volunteerName": "Pedro Oliveira",
+      "volunteerEmail": "pedro.oliveira@email.com",
+      "opportunityTitle": "Distribuicao de Alimentos",
+      "appliedDate": "2025-11-26T09:00:00.000Z",
+      "status": "accepted",
+      "message": "Tenho carro proprio e posso ajudar no transporte."
+    },
+    {
+      "id": "5",
+      "opportunityId": 3,
+      "volunteerId": 10,
+      "volunteerName": "Ana Rodrigues",
+      "volunteerEmail": "ana.rodrigues@email.com",
+      "opportunityTitle": "Reflorestamento Urbano",
+      "appliedDate": "2025-11-26T15:30:00.000Z",
+      "status": "accepted",
+      "message": "Sou biologa e tenho grande interesse em preservacao ambiental."
+    },
+    {
+      "id": "6",
+      "opportunityId": 4,
+      "volunteerId": 11,
+      "volunteerName": "Carlos Ferreira",
+      "volunteerEmail": "carlos.ferreira@email.com",
+      "opportunityTitle": "Mentoria de Carreira",
+      "appliedDate": "2025-11-27T10:00:00.000Z",
+      "status": "pending",
+      "message": "Trabalho com tecnologia ha 10 anos e quero ajudar jovens a entrarem na area."
+    },
+    {
+      "id": "7",
+      "opportunityId": 11,
+      "volunteerId": 11,
+      "volunteerName": "Carlos Ferreira",
+      "volunteerEmail": "carlos.ferreira@email.com",
+      "opportunityTitle": "Workshop de Programacao",
+      "appliedDate": "2025-11-27T11:00:00.000Z",
+      "status": "accepted",
+      "message": "Posso ensinar JavaScript e Python para iniciantes."
+    },
+    {
+      "id": "8",
+      "opportunityId": 13,
+      "volunteerId": 12,
+      "volunteerName": "Júlia Costa",
+      "volunteerEmail": "julia.costa@email.com",
+      "opportunityTitle": "Campanha de Vacinacao",
+      "appliedDate": "2025-11-27T14:20:00.000Z",
+      "status": "accepted",
+      "message": "Sou enfermeira e tenho experiencia em campanhas de vacinacao."
+    },
+    {
+      "id": "9",
+      "opportunityId": 12,
+      "volunteerId": 13,
+      "volunteerName": "Rafael Alves",
+      "volunteerEmail": "rafael.alves@email.com",
+      "opportunityTitle": "Preparacao para Entrevistas",
+      "appliedDate": "2025-11-27T16:45:00.000Z",
+      "status": "pending",
+      "message": "Trabalho com RH e coaching de carreira. Posso ajudar jovens a se prepararem."
+    },
+    {
+      "id": "10",
+      "opportunityId": 15,
+      "volunteerId": 14,
+      "volunteerName": "Fernanda Lima",
+      "volunteerEmail": "fernanda.lima@email.com",
+      "opportunityTitle": "Palestras de Saude Mental",
+      "appliedDate": "2025-11-27T18:00:00.000Z",
+      "status": "accepted",
+      "message": "Sou psicologa e gostaria de oferecer palestras sobre saude mental e bem-estar."
     }
   ],
   "organizations": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Instituto Esperanca",
       "description": "Trabalhamos com educacao e desenvolvimento comunitario ha mais de 15 anos.",
       "imageUrl": "https://images.unsplash.com/photo-1427751840561-9852520f8ce8?w=400",
@@ -387,7 +677,7 @@
       "website": "https://esperanca.org"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Maos que Ajudam",
       "description": "Focados em combater a fome e ajudar pessoas em situacao de vulnerabilidade.",
       "imageUrl": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400",
@@ -400,7 +690,7 @@
       "website": "https://maosqueajudam.org"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Verde Vida",
       "description": "Preservacao ambiental e reflorestamento urbano sao nossas prioridades.",
       "imageUrl": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400",
@@ -413,7 +703,7 @@
       "website": "https://verdevida.org"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Futuro Jovem",
       "description": "Capacitacao profissional e mentoria para jovens de baixa renda.",
       "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400",
@@ -426,7 +716,7 @@
       "website": "https://futurojovem.org"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Saude Comunitaria",
       "description": "Promovemos saude e bem-estar em comunidades carentes atraves de acoes preventivas e educativas.",
       "imageUrl": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400",
@@ -441,10 +731,30 @@
   ],
   "notifications": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "date": "2025-11-23T20:47:49.183Z",
       "status": "pending"
+    },
+    {
+      "id": "d0da",
+      "userId": 2,
+      "title": "Atualização de Candidatura",
+      "message": "Infelizmente sua candidatura para \"Apoio Escolar Comunitario\" não foi selecionada desta vez. Continue procurando outras oportunidades!",
+      "type": "rejection",
+      "relatedId": "2",
+      "createdAt": "2025-11-28T02:53:20.790Z",
+      "read": false
+    },
+    {
+      "id": "f444",
+      "userId": 2,
+      "title": "Atualização de Candidatura",
+      "message": "Infelizmente sua candidatura para \"Apoio Escolar Comunitario\" não foi selecionada desta vez. Continue procurando outras oportunidades!",
+      "type": "rejection",
+      "relatedId": "2",
+      "createdAt": "2025-11-28T02:53:20.846Z",
+      "read": false
     }
   ]
 }

@@ -243,6 +243,95 @@
 
 .application-actions button {
     width: 100%;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Accept Button - Green with gradient */
+.application-actions button[color="primary"] {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.application-actions button[color="primary"]:hover {
+    background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.application-actions button[color="primary"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Reject Button - Red with gradient */
+.application-actions button[color="warn"] {
+    background: linear-gradient(135deg, #f44336 0%, #e53935 100%) !important;
+    color: white !important;
+    border: 2px solid #f44336 !important;
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.application-actions button[color="warn"]:hover {
+    background: linear-gradient(135deg, #e53935 0%, #d32f2f 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+    border-color: #e53935 !important;
+}
+
+.application-actions button[color="warn"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+}
+
+/* Ripple effect animation */
+.application-actions button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.application-actions button:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Icon animation */
+.application-actions button mat-icon {
+    transition: transform 0.3s ease;
+}
+
+.application-actions button:hover mat-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.application-actions button[color="primary"]:hover mat-icon {
+    animation: checkBounce 0.6s ease;
+}
+
+.application-actions button[color="warn"]:hover mat-icon {
+    animation: closeSpin 0.6s ease;
+}
+
+@keyframes checkBounce {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.3) rotate(10deg); }
+}
+
+@keyframes closeSpin {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.3) rotate(180deg); }
 }
 
 /* Empty State */
