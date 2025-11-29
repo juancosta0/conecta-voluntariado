@@ -14,6 +14,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { HeaderComponent } from './components/header/header.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
@@ -37,7 +38,8 @@ import { NotificationsComponent } from './components/notifications/notifications
         MatChipsModule,
         MatBadgeModule,
         MatSidenavModule,
-        MatListModule
+        MatListModule,
+        MatCheckboxModule
     ],
     exports: [
         CommonModule,
@@ -54,6 +56,7 @@ import { NotificationsComponent } from './components/notifications/notifications
         MatBadgeModule,
         MatSidenavModule,
         MatListModule,
+        MatCheckboxModule,
         HeaderComponent,
         NotificationsComponent
     ]

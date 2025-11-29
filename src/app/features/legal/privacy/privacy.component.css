@@ -1,0 +1,125 @@
+.legal-container {
+    min-height: calc(100vh - var(--header-height));
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+}
+
+.legal-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+mat-card-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+mat-card-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+mat-card-subtitle {
+    color: var(--gray-600);
+    font-size: 1rem;
+}
+
+.legal-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.legal-section:last-of-type {
+    border-bottom: none;
+}
+
+.legal-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-700);
+    margin-bottom: 1rem;
+}
+
+.legal-section h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-600);
+    margin: 1.5rem 0 0.75rem 0;
+}
+
+.legal-section p {
+    line-height: 1.8;
+    color: var(--gray-700);
+    margin-bottom: 1rem;
+}
+
+.legal-section ul {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.legal-section li {
+    line-height: 1.8;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+}
+
+.legal-section a {
+    color: var(--primary-600);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--primary-300);
+    transition: all 0.3s ease;
+}
+
+.legal-section a:hover {
+    color: var(--primary-700);
+    border-bottom-color: var(--primary-700);
+}
+
+.legal-section strong {
+    color: var(--gray-900);
+    font-weight: 600;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--gray-200);
+}
+
+@media (max-width: 768px) {
+    .legal-card {
+        padding: 1.5rem;
+    }
+
+    mat-card-title {
+        font-size: 2rem;
+    }
+
+    .legal-section h2 {
+        font-size: 1.25rem;
+    }
+
+    .legal-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons button {
+        width: 100%;
+    }
+}

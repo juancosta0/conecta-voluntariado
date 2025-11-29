@@ -32,6 +32,14 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./features/profile/profile-feature.module').then(m => m.ProfileFeatureModule)
   },
+  {
+    path: 'terms',
+    loadComponent: () => import('./features/legal/terms/terms.component').then(m => m.TermsComponent)
+  },
+  {
+    path: 'privacy',
+    loadComponent: () => import('./features/legal/privacy/privacy.component').then(m => m.PrivacyComponent)
+  },
   { path: '**', redirectTo: '' }
 ];
 
