@@ -163,10 +163,8 @@
                     Criar Minha Conta
                 </button>
             </form>
-            }
-
+            } @else {
             <!-- Formulário ONG -->
-            @if (selectedUserType === UserType.NGO) {
             <form [formGroup]="ngoForm" (ngSubmit)="onSubmit()">
                 <div class="form-section">
                     <h4 class="section-title">Informações da Organização</h4>
