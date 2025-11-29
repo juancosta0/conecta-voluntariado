@@ -75,28 +75,51 @@
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Nome Completo</mat-label>
                         <input matInput formControlName="name" placeholder="Ex: João Silva">
+                        <mat-error>{{ getErrorMessage(volunteerForm, 'name') }}</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>E-mail</mat-label>
                         <input matInput formControlName="email" type="email" placeholder="seu@email.com">
+                        <mat-error>{{ getErrorMessage(volunteerForm, 'email') }}</mat-error>
                     </mat-form-field>
 
                     <div class="form-row">
                         <mat-form-field appearance="outline" class="half-width">
                             <mat-label>Usuário</mat-label>
                             <input matInput formControlName="username" placeholder="usuario123">
+                            <mat-error>{{ getErrorMessage(volunteerForm, 'username') }}</mat-error>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="half-width">
                             <mat-label>Telefone</mat-label>
-                            <input matInput formControlName="phone" placeholder="(11) 99999-9999">
+                            <input matInput formControlName="phone" placeholder="(11) 99999-9999"
+                                (input)="formatPhone($event, volunteerForm)">
+                            <mat-hint>Opcional</mat-hint>
+                            <mat-error>{{ getErrorMessage(volunteerForm, 'phone') }}</mat-error>
                         </mat-form-field>
                     </div>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Senha</mat-label>
                         <input matInput formControlName="password" type="password">
+                        <mat-hint>Mínimo 8 caracteres, com letra maiúscula e número</mat-hint>
+                        <mat-error>{{ getErrorMessage(volunteerForm, 'password') }}</mat-error>
+                    </mat-form-field>
+
+                    @if (volunteerForm.get('password')?.value) {
+                    <div class="password-strength-container">
+                        <div class="password-strength-bar" [class]="passwordStrength">
+                            <div class="password-strength-fill"></div>
+                        </div>
+                        <span class="password-strength-text">Força: {{ passwordStrengthText }}</span>
+                    </div>
+                    }
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Confirmar Senha</mat-label>
+                        <input matInput formControlName="passwordConfirm" type="password">
+                        <mat-error>{{ getErrorMessage(volunteerForm, 'passwordConfirm') }}</mat-error>
                     </mat-form-field>
                 </div>
 
@@ -114,243 +137,145 @@
                         <input matInput formControlName="skills" placeholder="Ex: Ensino, Cozinha, Programação">
                         <mat-hint>Separe por vírgula</mat-hint>
                     </mat-form-field>
-                    <div class="register-container">
-                        <!-- Step 1: Seleção de Tipo -->
-                        @if (currentStep === 1) {
-                        <div class="type-selection">
-                            <div class="selection-header">
-                                <h1>Junte-se ao ConectaVoluntário</h1>
-                                <p class="subtitle">Escolha como você quer fazer a diferença</p>
-                            </div>
 
-                            <div class="type-cards">
-                                <div class="type-card volunteer-card" (click)="selectUserType(UserType.VOLUNTEER)">
-                                    <div class="card-badge">Mais Popular</div>
-                                    <div class="card-icon">🙋‍♂️</div>
-                                    <h3>Sou Voluntário</h3>
-                                    <p>Encontre oportunidades incríveis para ajudar sua comunidade e desenvolver novas
-                                        habilidades</p>
-                                    <ul class="benefits-list">
-                                        <li>✓ Acesso a centenas de oportunidades</li>
-                                        <li>✓ Conecte-se com ONGs verificadas</li>
-                                        <li>✓ Acompanhe seu impacto</li>
-                                    </ul>
-                                    <button mat-flat-button color="primary" class="select-btn">Começar Agora</button>
-                                </div>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Conte um pouco sobre você</mat-label>
+                        <textarea matInput formControlName="bio" rows="3"
+                            placeholder="Por que você quer ser voluntário?"></textarea>
+                    </mat-form-field>
+                </div>
 
-                                <div class="type-card ngo-card" (click)="selectUserType(UserType.NGO)">
-                                    <div class="card-icon">🏢</div>
-                                    <h3>Sou uma ONG</h3>
-                                    <p>Divulgue seus projetos e encontre voluntários engajados para sua causa</p>
-                                    <ul class="benefits-list">
-                                        <li>✓ Crie e gerencie projetos</li>
-                                        <li>✓ Encontre voluntários qualificados</li>
-                                        <li>✓ Aumente seu alcance</li>
-                                    </ul>
-                                    <button mat-flat-button color="primary" class="select-btn">Cadastrar ONG</button>
-                                </div>
-                            </div>
+                <div class="terms-section">
+                    <mat-checkbox formControlName="acceptTerms" class="terms-checkbox">
+                        <span class="terms-text">
+                            Li e aceito os <a routerLink="/terms" target="_blank">Termos de Uso</a> e a
+                            <a routerLink="/privacy" target="_blank">Política de Privacidade</a>
+                        </span>
+                    </mat-checkbox>
+                    <p class="lgpd-notice">
+                        <mat-icon>info</mat-icon>
+                        Seus dados serão tratados conforme a LGPD (Lei nº 13.709/2018)
+                    </p>
+                </div>
 
-                            <div class="login-link">
-                                <p>Já tem uma conta? <a routerLink="/login">Faça login</a></p>
-                            </div>
-                        </div>
-                        }
+                <button mat-flat-button color="primary" class="full-width submit-btn" type="submit"
+                    [disabled]="volunteerForm.invalid">
+                    Criar Minha Conta
+                </button>
+            </form>
+            }
 
-                        <!-- Step 2: Formulário -->
-                        @if (currentStep === 2) {
-                        <mat-card class="register-card">
-                            <button mat-icon-button class="back-button" (click)="goBack()">
-                                ←
-                            </button>
+            <!-- Formulário ONG -->
+            @if (selectedUserType === UserType.NGO) {
+            <form [formGroup]="ngoForm" (ngSubmit)="onSubmit()">
+                <div class="form-section">
+                    <h4 class="section-title">Informações da Organização</h4>
 
-                            <mat-card-header>
-                                <div class="header-icon">
-                                    @if (selectedUserType === UserType.VOLUNTEER) {
-                                    🙋‍♂️
-                                    } @else {
-                                    🏢
-                                    }
-                                </div>
-                                <mat-card-title>
-                                    @if (selectedUserType === UserType.VOLUNTEER) {
-                                    Cadastro de Voluntário
-                                    } @else {
-                                    Cadastro de ONG
-                                    }
-                                </mat-card-title>
-                                <mat-card-subtitle>Preencha seus dados para começar sua jornada</mat-card-subtitle>
-                            </mat-card-header>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Nome da Organização</mat-label>
+                        <input matInput formControlName="organizationName" placeholder="Ex: Instituto Ajudar">
+                        <mat-error>{{ getErrorMessage(ngoForm, 'organizationName') }}</mat-error>
+                    </mat-form-field>
 
-                            <mat-card-content>
-                                <!-- Formulário Voluntário -->
-                                @if (selectedUserType === UserType.VOLUNTEER) {
-                                <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()">
-                                    <div class="form-section">
-                                        <h4 class="section-title">Informações Pessoais</h4>
+                    <div class="form-row">
+                        <mat-form-field appearance="outline" class="half-width">
+                            <mat-label>CNPJ</mat-label>
+                            <input matInput formControlName="cnpj" placeholder="00.000.000/0000-00"
+                                (input)="formatCNPJ($event)">
+                            <mat-error>{{ getErrorMessage(ngoForm, 'cnpj') }}</mat-error>
+                        </mat-form-field>
 
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Nome Completo</mat-label>
-                                            <input matInput formControlName="name" placeholder="Ex: João Silva">
-                                        </mat-form-field>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>E-mail</mat-label>
-                                            <input matInput formControlName="email" type="email"
-                                                placeholder="seu@email.com">
-                                        </mat-form-field>
-
-                                        <div class="form-row">
-                                            <mat-form-field appearance="outline" class="half-width">
-                                                <mat-label>Usuário</mat-label>
-                                                <input matInput formControlName="username" placeholder="usuario123">
-                                            </mat-form-field>
-
-                                            <mat-form-field appearance="outline" class="half-width">
-                                                <mat-label>Telefone</mat-label>
-                                                <input matInput formControlName="phone" placeholder="(11) 99999-9999">
-                                            </mat-form-field>
-                                        </div>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Senha</mat-label>
-                                            <input matInput formControlName="password" type="password">
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="form-section">
-                                        <h4 class="section-title">Sobre Você</h4>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Áreas de Interesse</mat-label>
-                                            <input matInput formControlName="interests"
-                                                placeholder="Ex: Educação, Meio Ambiente, Saúde">
-                                            <mat-hint>Separe por vírgula</mat-hint>
-                                        </mat-form-field>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Habilidades</mat-label>
-                                            <input matInput formControlName="skills"
-                                                placeholder="Ex: Ensino, Cozinha, Programação">
-                                            <mat-hint>Separe por vírgula</mat-hint>
-                                        </mat-form-field>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Conte um pouco sobre você</mat-label>
-                                            <textarea matInput formControlName="bio" rows="3"
-                                                placeholder="Por que você quer ser voluntário?"></textarea>
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="terms-section">
-                                        <mat-checkbox formControlName="acceptTerms" class="terms-checkbox">
-                                            <span class="terms-text">
-                                                Li e aceito os <a routerLink="/terms" target="_blank">Termos de Uso</a>
-                                                e a
-                                                <a routerLink="/privacy" target="_blank">Política de Privacidade</a>
-                                            </span>
-                                        </mat-checkbox>
-                                        <p class="lgpd-notice">
-                                            <mat-icon>info</mat-icon>
-                                            Seus dados serão tratados conforme a LGPD (Lei nº 13.709/2018)
-                                        </p>
-                                    </div>
-
-                                    <button mat-flat-button color="primary" class="full-width submit-btn" type="submit"
-                                        [disabled]="volunteerForm.invalid">
-                                        Criar Minha Conta
-                                    </button>
-                                </form>
-                                }
-
-                                <!-- Formulário ONG -->
-                                @if (selectedUserType === UserType.NGO) {
-                                <form [formGroup]="ngoForm" (ngSubmit)="onSubmit()">
-                                    <div class="form-section">
-                                        <h4 class="section-title">Informações da Organização</h4>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Nome da Organização</mat-label>
-                                            <input matInput formControlName="organizationName"
-                                                placeholder="Ex: Instituto Ajudar">
-                                        </mat-form-field>
-
-                                        <div class="form-row">
-                                            <mat-form-field appearance="outline" class="half-width">
-                                                <mat-label>CNPJ</mat-label>
-                                                <input matInput formControlName="cnpj" placeholder="00.000.000/0000-00">
-                                            </mat-form-field>
-
-                                            <mat-form-field appearance="outline" class="half-width">
-                                                <mat-label>Telefone</mat-label>
-                                                <input matInput formControlName="phone" placeholder="(11) 3333-3333">
-                                            </mat-form-field>
-                                        </div>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>E-mail Institucional</mat-label>
-                                            <input matInput formControlName="email" type="email"
-                                                placeholder="contato@ong.org.br">
-                                        </mat-form-field>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Website</mat-label>
-                                            <input matInput formControlName="website"
-                                                placeholder="https://www.suaong.org.br">
-                                        </mat-form-field>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Endereço</mat-label>
-                                            <input matInput formControlName="address"
-                                                placeholder="Rua, número, bairro, cidade">
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="form-section">
-                                        <h4 class="section-title">Acesso ao Sistema</h4>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Usuário</mat-label>
-                                            <input matInput formControlName="username" placeholder="usuario_ong">
-                                        </mat-form-field>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Senha</mat-label>
-                                            <input matInput formControlName="password" type="password">
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="form-section">
-                                        <h4 class="section-title">Sobre a Organização</h4>
-
-                                        <mat-form-field appearance="outline" class="full-width">
-                                            <mat-label>Descrição</mat-label>
-                                            <textarea matInput formControlName="description" rows="4"
-                                                placeholder="Conte sobre a missão e atividades da sua organização"></textarea>
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="terms-section">
-                                        <mat-checkbox formControlName="acceptTerms" class="terms-checkbox">
-                                            <span class="terms-text">
-                                                Li e aceito os <a routerLink="/terms" target="_blank">Termos de Uso</a>
-                                                e a
-                                                <a routerLink="/privacy" target="_blank">Política de Privacidade</a>
-                                            </span>
-                                        </mat-checkbox>
-                                        <p class="lgpd-notice">
-                                            <mat-icon>info</mat-icon>
-                                            Seus dados serão tratados conforme a LGPD (Lei nº 13.709/2018)
-                                        </p>
-                                    </div>
-
-                                    <button mat-flat-button color="primary" class="full-width submit-btn" type="submit"
-                                        [disabled]="ngoForm.invalid">
-                                        Cadastrar Organização
-                                    </button>
-                                </form>
-                                }
-                            </mat-card-content>
-                        </mat-card>
-                        }
+                        <mat-form-field appearance="outline" class="half-width">
+                            <mat-label>Telefone</mat-label>
+                            <input matInput formControlName="phone" placeholder="(11) 3333-3333"
+                                (input)="formatPhone($event, ngoForm)">
+                            <mat-hint>Opcional</mat-hint>
+                            <mat-error>{{ getErrorMessage(ngoForm, 'phone') }}</mat-error>
+                        </mat-form-field>
                     </div>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>E-mail Institucional</mat-label>
+                        <input matInput formControlName="email" type="email" placeholder="contato@ong.org.br">
+                        <mat-error>{{ getErrorMessage(ngoForm, 'email') }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Website</mat-label>
+                        <input matInput formControlName="website" placeholder="https://www.suaong.org.br">
+                        <mat-hint>Opcional</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Endereço</mat-label>
+                        <input matInput formControlName="address" placeholder="Rua, número, bairro, cidade">
+                        <mat-hint>Opcional</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-section">
+                    <h4 class="section-title">Acesso ao Sistema</h4>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Usuário</mat-label>
+                        <input matInput formControlName="username" placeholder="usuario_ong">
+                        <mat-error>{{ getErrorMessage(ngoForm, 'username') }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Senha</mat-label>
+                        <input matInput formControlName="password" type="password">
+                        <mat-hint>Mínimo 8 caracteres, com letra maiúscula e número</mat-hint>
+                        <mat-error>{{ getErrorMessage(ngoForm, 'password') }}</mat-error>
+                    </mat-form-field>
+
+                    @if (ngoForm.get('password')?.value) {
+                    <div class="password-strength-container">
+                        <div class="password-strength-bar" [class]="passwordStrength">
+                            <div class="password-strength-fill"></div>
+                        </div>
+                        <span class="password-strength-text">Força: {{ passwordStrengthText }}</span>
+                    </div>
+                    }
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Confirmar Senha</mat-label>
+                        <input matInput formControlName="passwordConfirm" type="password">
+                        <mat-error>{{ getErrorMessage(ngoForm, 'passwordConfirm') }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-section">
+                    <h4 class="section-title">Sobre a Organização</h4>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Descrição</mat-label>
+                        <textarea matInput formControlName="description" rows="4"
+                            placeholder="Conte sobre a missão e atividades da sua organização"></textarea>
+                        <mat-error>{{ getErrorMessage(ngoForm, 'description') }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="terms-section">
+                    <mat-checkbox formControlName="acceptTerms" class="terms-checkbox">
+                        <span class="terms-text">
+                            Li e aceito os <a routerLink="/terms" target="_blank">Termos de Uso</a> e a
+                            <a routerLink="/privacy" target="_blank">Política de Privacidade</a>
+                        </span>
+                    </mat-checkbox>
+                    <p class="lgpd-notice">
+                        <mat-icon>info</mat-icon>
+                        Seus dados serão tratados conforme a LGPD (Lei nº 13.709/2018)
+                    </p>
+                </div>
+
+                <button mat-flat-button color="primary" class="full-width submit-btn" type="submit"
+                    [disabled]="ngoForm.invalid">
+                    Cadastrar Organização
+                </button>
+            </form>
+            }
+        </mat-card-content>
+    </mat-card>
+    }
+</div>

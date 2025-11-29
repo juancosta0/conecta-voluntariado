@@ -393,6 +393,104 @@ mat-card-subtitle {
     cursor: not-allowed;
 }
 
+/* Password Strength Indicator */
+.password-strength-container {
+    margin: 0.5rem 0 1rem 0;
+}
+
+.password-strength-bar {
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.password-strength-fill {
+    height: 100%;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.password-strength-bar.weak .password-strength-fill {
+    width: 33%;
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.password-strength-bar.medium .password-strength-fill {
+    width: 66%;
+    background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.password-strength-bar.strong .password-strength-fill {
+    width: 100%;
+    background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.password-strength-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.password-strength-bar.weak + .password-strength-text {
+    color: #dc2626;
+}
+
+.password-strength-bar.medium + .password-strength-text {
+    color: #d97706;
+}
+
+.password-strength-bar.strong + .password-strength-text {
+    color: #059669;
+}
+
+/* Error Messages */
+mat-error {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    color: #dc2626;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .selection-header h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .type-cards {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .type-card {
+        padding: 2.5rem 2rem;
+    }
+    
+    .register-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 .login-link {
     margin-top: 3rem;
     padding-top: 2rem;

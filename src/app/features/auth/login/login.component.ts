@@ -21,6 +21,15 @@ export class LoginComponent {
         password: ['', Validators.required]
     });
 
+    getErrorMessage(fieldName: string): string {
+        const field = this.loginForm.get(fieldName);
+        if (!field || !field.errors || !field.touched) return '';
+
+        if (field.errors['required']) return 'Este campo é obrigatório';
+
+        return '';
+    }
+
     onSubmit() {
         if (this.loginForm.valid) {
             const { username, password } = this.loginForm.value;
@@ -35,6 +44,11 @@ export class LoginComponent {
                     console.error('Login error:', error);
                     this.snackBar.open('Erro ao fazer login. Verifique se o servidor está rodando.', 'Fechar', { duration: 5000 });
                 }
+            });
+        } else {
+            // Mark all fields as touched to show errors
+            Object.keys(this.loginForm.controls).forEach(key => {
+                this.loginForm.get(key)?.markAsTouched();
             });
         }
     }

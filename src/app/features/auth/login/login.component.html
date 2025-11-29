@@ -44,11 +44,13 @@
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Usuário</mat-label>
                             <input matInput formControlName="username">
+                            <mat-error>{{ getErrorMessage('username') }}</mat-error>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Senha</mat-label>
                             <input matInput formControlName="password" type="password">
+                            <mat-error>{{ getErrorMessage('password') }}</mat-error>
                         </mat-form-field>
 
                         <button mat-flat-button color="primary" class="full-width login-btn" type="submit">
