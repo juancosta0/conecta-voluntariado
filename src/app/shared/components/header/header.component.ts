@@ -9,4 +9,13 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class HeaderComponent {
     authService = inject(AuthService);
+    mobileMenuOpen = false;
+
+    toggleMobileMenu() {
+        this.mobileMenuOpen = !this.mobileMenuOpen;
+    }
+
+    closeMobileMenu() {
+        this.mobileMenuOpen = false;
+    }
 }

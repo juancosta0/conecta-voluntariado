@@ -83,3 +83,37 @@
     flex-wrap: wrap;
     gap: 0.5rem;
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .opportunities-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .opportunities-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .search-section {
+        flex-direction: column;
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .opportunities-page {
+        padding: 1rem 0;
+    }
+}

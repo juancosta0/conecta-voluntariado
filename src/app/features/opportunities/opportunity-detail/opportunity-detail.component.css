@@ -62,6 +62,7 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .pill {
@@ -117,4 +118,54 @@
 .volunteers-count {
   color: var(--text-light);
   font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .detail-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .detail-image {
+    height: 200px;
+  }
+  
+  .detail-content {
+    padding: 1.5rem;
+  }
+  
+  .detail-title {
+    font-size: 1.5rem;
+  }
+  
+  .org-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .action-area {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .action-area button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-title {
+    font-size: 1.25rem;
+  }
+  
+  .pills {
+    gap: 0.25rem;
+  }
+  
+  .pill {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
 }

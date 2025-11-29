@@ -5,6 +5,7 @@
             <span class="logo-text">ConectaVoluntário</span>
         </div>
 
+        <!-- Desktop Navigation -->
         <nav class="nav-links">
             <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Início</a>
             <a routerLink="/opportunities" routerLinkActive="active">Oportunidades</a>
@@ -16,6 +17,11 @@
             <a routerLink="/profile" routerLinkActive="active" class="profile-link">Perfil</a>
             }
         </nav>
+
+        <!-- Mobile Menu Button -->
+        <button mat-icon-button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+            <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+        </button>
 
         <div class="auth-buttons">
             @if (authService.currentUser(); as user) {
@@ -33,3 +39,35 @@
         </div>
     </div>
 </header>
+
+<!-- Mobile Navigation Drawer -->
+<mat-drawer-container class="mobile-drawer-container" autosize>
+    <mat-drawer #drawer mode="over" position="end" [opened]="mobileMenuOpen" (closed)="closeMobileMenu()">
+        <nav class="mobile-nav">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
+                <mat-icon>home</mat-icon>
+                Início
+            </a>
+            <a routerLink="/opportunities" routerLinkActive="active" (click)="closeMobileMenu()">
+                <mat-icon>volunteer_activism</mat-icon>
+                Oportunidades
+            </a>
+            <a routerLink="/organizations" routerLinkActive="active" (click)="closeMobileMenu()">
+                <mat-icon>business</mat-icon>
+                Organizações
+            </a>
+            @if (authService.isNGO() || (authService.currentUser()?.username === 'admin')) {
+            <a routerLink="/ngo" routerLinkActive="active" (click)="closeMobileMenu()">
+                <mat-icon>dashboard</mat-icon>
+                Painel
+            </a>
+            }
+            @if (authService.currentUser() && !authService.isNGO() && authService.currentUser()?.username !== 'admin') {
+            <a routerLink="/profile" routerLinkActive="active" (click)="closeMobileMenu()">
+                <mat-icon>person</mat-icon>
+                Perfil
+            </a>
+            }
+        </nav>
+    </mat-drawer>
+</mat-drawer-container>

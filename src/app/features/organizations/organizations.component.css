@@ -78,6 +78,7 @@ mat-card-content h3 {
     padding: 1rem 0;
     border-top: 1px solid #e5e7eb;
     border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
 }
 
 .stat {
@@ -98,4 +99,48 @@ mat-card-content h3 {
 .full-width {
     width: 100%;
     margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .organizations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .organizations-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .stats {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .organizations-page {
+        padding: 1rem 0;
+    }
+    
+    .page-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .page-header p {
+        font-size: 1rem;
+    }
+    
+    mat-card-content {
+        padding: 1rem;
+    }
+    
+    .org-image {
+        height: 150px;
+    }
 }
