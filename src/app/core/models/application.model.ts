@@ -15,5 +15,6 @@ export interface Application {
     status: ApplicationStatus;
     appliedDate: string;
     message?: string;
-    user?: any; // Expanded user object from JSON Server
+    user?: any; // Expanded user object
+    opportunity?: any; // Expanded opportunity object
 }

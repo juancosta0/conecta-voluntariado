@@ -38,35 +38,21 @@ export class NgoDashboardComponent implements OnInit {
     });
 
     ngOnInit() {
-        console.log('=== NgoDashboard.ngOnInit ===');
         const user = this.authService.currentUser();
-        console.log('User in ngOnInit:', user);
-
         if (!user || (!this.authService.isNGO() && user.username !== 'admin')) {
-            console.log('User not authorized, redirecting...');
             this.router.navigate(['/']);
             return;
         }
 
-        console.log('User authorized, loading dashboard data...');
         this.loadDashboardData();
     }
 
     loadDashboardData() {
-        console.log('=== NgoDashboard.loadDashboardData ===');
         const user = this.authService.currentUser();
-        console.log('Current user:', user);
+        if (!user) return;
 
-        if (!user) {
-            console.log('No user found, returning...');
-            return;
-        }
-
-        console.log('Getting opportunities for NGO ID:', user.id);
         // Get opportunities for this NGO
         this.opportunityService.getOpportunitiesByNgo(user.id).subscribe((opportunities: Opportunity[]) => {
-            console.log('Opportunities for NGO:', opportunities);
-
             // For each opportunity, get its applications (with error handling)
             const requests = opportunities.map((opp: Opportunity) =>
                 this.applicationService.getApplicationsWithDetails(opp.id).pipe(
@@ -74,25 +60,20 @@ export class NgoDashboardComponent implements OnInit {
                 )
             );
 
-            console.log('Number of requests:', requests.length);
-
             if (requests.length > 0) {
-                console.log('Calling forkJoin...');
                 forkJoin(requests).subscribe((applicationsArrays: Application[][]) => {
-                    console.log('=== forkJoin completed ===');
-                    console.log('Applications arrays:', applicationsArrays);
-
                     const data: OpportunityWithApplications[] = opportunities.map((opp: Opportunity, index: number) => ({
                         opportunity: opp,
-                        applications: applicationsArrays[index]
+                        applications: applicationsArrays[index].map(app => ({
+                            ...app,
+                            opportunity: opp  // Add opportunity reference for notifications
+                        }))
                     }));
 
-                    console.log('Final dashboard data:', data);
                     this.opportunitiesWithApplications.set(data);
                     this.calculateStats(data);
                 });
             } else {
-                console.log('No opportunities found, setting empty array');
                 this.opportunitiesWithApplications.set([]);
                 this.calculateStats([]);
             }
@@ -115,7 +96,7 @@ export class NgoDashboardComponent implements OnInit {
             this.notificationService.createNotification({
                 userId: application.userId,
                 title: 'Candidatura Aceita! 🎉',
-                message: `Sua candidatura para "${application.opportunityTitle}" foi aceita! A organização entrará em contato em breve.`,
+                message: `Sua candidatura para "${application.opportunity?.title || 'a vaga'}" foi aceita! A organização entrará em contato em breve.`,
                 type: NotificationType.ACCEPTANCE,
                 relatedId: application.id
             }).subscribe();
@@ -131,7 +112,7 @@ export class NgoDashboardComponent implements OnInit {
             this.notificationService.createNotification({
                 userId: application.userId,
                 title: 'Atualização de Candidatura',
-                message: `Infelizmente sua candidatura para "${application.opportunityTitle}" não foi selecionada desta vez. Continue procurando outras oportunidades!`,
+                message: `Infelizmente sua candidatura para "${application.opportunity?.title || 'a vaga'}" não foi selecionada desta vez. Continue procurando outras oportunidades!`,
                 type: NotificationType.REJECTION,
                 relatedId: application.id
             }).subscribe();
