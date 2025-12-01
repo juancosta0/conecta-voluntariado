@@ -18,11 +18,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { HeaderComponent } from './components/header/header.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
-        NotificationsComponent
+        NotificationsComponent,
+        FooterComponent
     ],
     imports: [
         CommonModule,
@@ -58,7 +60,8 @@ import { NotificationsComponent } from './components/notifications/notifications
         MatListModule,
         MatCheckboxModule,
         HeaderComponent,
-        NotificationsComponent
+        NotificationsComponent,
+        FooterComponent
     ]
 })
 export class SharedModule { }

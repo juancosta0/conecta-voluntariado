@@ -30,7 +30,7 @@ O ConectaVoluntário foi desenvolvido com **Angular 19** e utiliza **Angular Mat
 - **Frontend**: Angular 19
 - **UI Components**: Angular Material
 - **Estilização**: CSS Vanilla com design system customizado
-- **Backend Mock**: JSON Server (simulação de API REST)
+- **Dados**: LocalStorage (inicializado via JSON)
 - **Ícones**: Material Icons
 
 ## 🚀 Como Rodar o Projeto
@@ -54,7 +54,7 @@ O ConectaVoluntário foi desenvolvido com **Angular 19** e utiliza **Angular Mat
 
 ### Executando a Aplicação
 
-Agora o projeto utiliza **LocalStorage** para simular o banco de dados, então você só precisa rodar o frontend!
+O projeto utiliza **LocalStorage** para simular o banco de dados, então você só precisa rodar o frontend!
 
 1. **Inicie o servidor de desenvolvimento**:
    ```bash
@@ -68,30 +68,32 @@ Agora o projeto utiliza **LocalStorage** para simular o banco de dados, então v
 
 ## 👥 Usuários de Teste
 
-### Administrador
+### 👑 Administrador
+- **Nome**: Administrador
 - **Usuário**: `admin`
 - **Senha**: `admin`
 
-### ONGs Cadastradas
-1. **Instituto Esperança**
-   - Usuário: `ong_esperanca`
-   - Senha: `esperanca123`
+### 🏢 ONGs (Organizações)
+| Nome | Usuário | Senha |
+|------|---------|-------|
+| Instituto Esperança | `ong_esperanca` | `esperanca123` |
+| Mãos que Ajudam | `ong_maos` | `maos123` |
+| Verde Vida | `ong_verde` | `verde123` |
+| Futuro Jovem | `ong_futuro` | `futuro123` |
+| Saúde Comunitária | `ong_saude` | `saude123` |
 
-2. **Mãos que Ajudam**
-   - Usuário: `ong_maos`
-   - Senha: `maos123`
-
-3. **Verde Vida**
-   - Usuário: `ong_verde`
-   - Senha: `verde123`
-
-4. **Futuro Jovem**
-   - Usuário: `ong_futuro`
-   - Senha: `futuro123`
-
-5. **Saúde Comunitária**
-   - Usuário: `ong_saude`
-   - Senha: `saude123`
+### 🙋‍♂️ Voluntários
+| Nome | Usuário | Senha |
+|------|---------|-------|
+| João Silva | `joao.silva` | `senha123` |
+| Maria Santos | `maria.santos` | `senha123` |
+| Pedro Oliveira | `pedro.oliveira` | `senha123` |
+| Ana Rodrigues | `ana.rodrigues` | `senha123` |
+| Carlos Ferreira | `carlos.ferreira` | `senha123` |
+| Júlia Costa | `julia.costa` | `senha123` |
+| Rafael Alves | `rafael.alves` | `senha123` |
+| Fernanda Lima | `fernanda.lima` | `senha123` |
+| Novo Voluntário | `novo.voluntario` | `senha123` |
 
 ## 📁 Estrutura do Projeto
 
@@ -107,10 +109,12 @@ ConectaVoluntario/
 │   │   │   ├── organizations/ # Organizações parceiras
 │   │   │   └── ngo-dashboard/ # Painel de controle das ONGs
 │   │   └── shared/            # Componentes compartilhados
+│   ├── assets/
+│   │   └── data/
+│   │       └── initial-data.json # Dados iniciais da aplicação
 │   ├── styles.css             # Estilos globais e design system
 │   └── ...
-├── db.json                    # Banco de dados mock (JSON Server)
-└── package.json
+├── package.json
 ```
 
 ## 🎨 Design System
@@ -129,9 +133,6 @@ O projeto utiliza um design system customizado com:
 ```bash
 # Iniciar servidor de desenvolvimento
 ng serve
-
-# Iniciar JSON Server
-npx json-server --watch db.json --port 3000
 
 # Gerar novo componente
 ng generate component nome-do-componente
@@ -160,21 +161,7 @@ ng test
 ng e2e
 ```
 
-## 📊 Dados do Sistema
-
-O sistema possui **15 oportunidades de voluntariado** distribuídas entre **5 ONGs**:
-
-- **Instituto Esperança**: 3 projetos (Educação)
-- **Mãos que Ajudam**: 3 projetos (Social)
-- **Verde Vida**: 3 projetos (Meio Ambiente)
-- **Futuro Jovem**: 3 projetos (Mentoria/Educação)
-- **Saúde Comunitária**: 3 projetos (Saúde)
-
 ## 🔧 Solução de Problemas
-
-### JSON Server não inicia
-
-Se o JSON Server apresentar erros de sintaxe, verifique se o arquivo `db.json` está com encoding UTF-8 correto.
 
 ### Angular não compila
 
@@ -185,16 +172,11 @@ npm install
 
 ### Porta já em uso
 
-Se a porta 4200 ou 3000 já estiver em uso, você pode especificar outra porta:
+Se a porta 4200 já estiver em uso, você pode especificar outra porta:
 ```bash
 # Angular em outra porta
 ng serve --port 4300
-
-# JSON Server em outra porta
-npx json-server --watch db.json --port 3001
 ```
-
-**Nota**: Se mudar a porta do JSON Server, atualize também a URL da API nos serviços (`src/app/core/services/*.service.ts`).
 
 ## 📝 Licença
 
