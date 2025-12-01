@@ -4,6 +4,7 @@ import { Opportunity, OpportunityService } from '../../../core/services/opportun
 import { AuthService } from '../../../core/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { switchMap } from 'rxjs/operators';
+import { ApplicationService } from '../../../core/services/application.service';
 
 @Component({
     selector: 'app-opportunity-detail',
@@ -15,6 +16,7 @@ export class OpportunityDetailComponent implements OnInit {
     private route = inject(ActivatedRoute);
     private router = inject(Router);
     private opportunityService = inject(OpportunityService);
+    private applicationService = inject(ApplicationService);
     private authService = inject(AuthService);
     private snackBar = inject(MatSnackBar);
 
@@ -32,6 +34,10 @@ export class OpportunityDetailComponent implements OnInit {
     }
 
     apply() {
+        console.log('=== APPLY CLICKED ===');
+        console.log('Is authenticated:', this.authService.isAuthenticated());
+        console.log('Is volunteer:', this.authService.isVolunteer());
+
         if (!this.authService.isAuthenticated()) {
             this.snackBar.open('Faça login para se candidatar', 'Login', { duration: 3000 })
                 .onAction().subscribe(() => this.router.navigate(['/login']));
@@ -46,10 +52,23 @@ export class OpportunityDetailComponent implements OnInit {
         const opp = this.opportunity();
         const user = this.authService.currentUser();
 
+        console.log('Opportunity:', opp);
+        console.log('User:', user);
+
         if (opp && user) {
-            this.opportunityService.apply(opp.id, user.id).subscribe(() => {
-                this.snackBar.open('Candidatura enviada com sucesso!', 'OK', { duration: 3000 });
+            console.log('Submitting application for opportunity:', opp.id, 'user:', user.id);
+            this.applicationService.submitApplication(opp.id, user.id).subscribe({
+                next: (result) => {
+                    console.log('Application submitted successfully:', result);
+                    this.snackBar.open('Candidatura enviada com sucesso!', 'OK', { duration: 3000 });
+                },
+                error: (err) => {
+                    console.error('Error submitting application:', err);
+                    this.snackBar.open('Erro ao enviar candidatura', 'OK', { duration: 3000 });
+                }
             });
+        } else {
+            console.error('Missing opportunity or user data');
         }
     }
 

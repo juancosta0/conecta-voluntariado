@@ -84,6 +84,12 @@
     gap: 0.5rem;
 }
 
+.opportunity-image {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .opportunities-grid {
@@ -105,6 +111,10 @@
         flex-direction: column;
         max-width: 100%;
         padding: 0 1rem;
+    }
+
+    .opportunity-image {
+        height: 150px;
     }
 }
 

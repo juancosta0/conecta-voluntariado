@@ -201,14 +201,20 @@
     bottom: 0;
     z-index: 999;
     pointer-events: none;
+    background: transparent;
 }
 
 .mobile-drawer-container mat-drawer {
     pointer-events: all;
+    background: white; /* Ensure background is white */
+    width: 100%; /* Full width for centering if needed, or keep standard */
+    max-width: 300px;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
 }
 
 .mobile-drawer-container mat-drawer-content {
     pointer-events: none;
+    background: transparent;
 }
 
 /* Responsive Design */

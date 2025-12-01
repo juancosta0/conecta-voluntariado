@@ -18,11 +18,6 @@
             }
         </nav>
 
-        <!-- Mobile Menu Button -->
-        <button mat-icon-button class="mobile-menu-btn" (click)="toggleMobileMenu()">
-            <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
-        </button>
-
         <div class="auth-buttons">
             @if (authService.currentUser(); as user) {
             <div class="user-menu">
@@ -37,6 +32,11 @@
             <button mat-flat-button color="primary" routerLink="/register" class="btn-register">Cadastrar</button>
             }
         </div>
+
+        <!-- Mobile Menu Button -->
+        <button mat-icon-button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+            <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+        </button>
     </div>
 </header>
 
@@ -44,7 +44,8 @@
 <mat-drawer-container class="mobile-drawer-container" autosize>
     <mat-drawer #drawer mode="over" position="end" [opened]="mobileMenuOpen" (closed)="closeMobileMenu()">
         <nav class="mobile-nav">
-            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMobileMenu()">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                (click)="closeMobileMenu()">
                 <mat-icon>home</mat-icon>
                 Início
             </a>
